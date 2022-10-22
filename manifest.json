@@ -1,0 +1,18 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "resource pack",
+        "name": "ServerFormX",
+        "uuid": "2e37c511-ef7c-442d-8b1e-58ffd0522b36",
+        "version": [0, 0, 1],
+        "min_engine_version": [ 1, 18, 10 ]
+    },
+    "modules": [
+        {
+            "description": "Example vanilla resource pack",
+            "type": "resources",
+            "uuid": "22d92b68-76b1-42e5-96e7-9a3b389ea8f9",
+            "version": [0, 0, 1]
+        }
+    ]
+}
