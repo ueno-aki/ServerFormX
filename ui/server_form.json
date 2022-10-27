@@ -387,6 +387,7 @@
   //ContainerMenuフォーム--------------------
   "container_form_store": {
     "type": "panel",
+    "ignored": "#visible",
     "controls": [
       {
         "container_form@server_form.container_form": {}
@@ -510,7 +511,7 @@
           ],
           "controls": [
             {
-              "container_form_dynamic_buttons_panel@server_form.container_form_dynamic_buttons_panel": {
+              "container_form_item_cells@server_form.container_form_dynamic_buttons_panel": {
                 "grid_item_template": "server_form.item_cell_dynamic_button",
                 "factory": {
                   "name": "buttons",
@@ -558,6 +559,7 @@
   },
   "item_cell_dynamic_button": {
     "type": "stack_panel",
+    "ignored": "#visible",
     "size": [
       18,
       "100%x"
@@ -574,13 +576,6 @@
           "$hover_text": "#form_button_text",
           "$default_button_texture": "textures/ui/cell_image",
           "$hover_button_texture": "textures/ui/highlight_slot",
-          "$mapping_type|default": "pressed",
-          "variables": [
-            {
-              "requires": "$touch",
-              "$mapping_type": "double_pressed"
-            }
-          ],
           "$button_image_size": [
             "100%",
             "100%"
@@ -630,6 +625,7 @@
   },
   "items": {
     "type": "panel",
+    "ignored": "#visible",
     "layer": 23,
     "size": [
       18,
