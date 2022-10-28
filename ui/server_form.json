@@ -387,7 +387,6 @@
   //ContainerMenuフォーム--------------------
   "container_form_store": {
     "type": "panel",
-    "ignored": "#visible",
     "controls": [
       {
         "container_form@server_form.container_form": {}
@@ -559,7 +558,6 @@
   },
   "item_cell_dynamic_button": {
     "type": "stack_panel",
-    "ignored": "#visible",
     "size": [
       18,
       "100%x"
@@ -625,7 +623,6 @@
   },
   "items": {
     "type": "panel",
-    "ignored": "#visible",
     "layer": 23,
     "size": [
       18,
