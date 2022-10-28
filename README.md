@@ -10,7 +10,27 @@
 * 職業メニュー
 
 # Usage
-### containerMenu
+## containerMenu
+* IDの求め方
+1. idAuxSearchToolフォルダのエンチャント台のUIを適用させる.
+2. エンチャント台をワールドで開いて左のスロットに調べたいアイテムを入れる
+3. 出てきたIDAux(まだIDではない)をメモ
+4. IDAux(以降aux)から計算してIDを求める
+> ID = (aux - (データ値) - (エンチャントしてる場合32768)) / 65536
+
+* Script API
+#### itemIDAux.js
+IDとキーワードを登録する
+```js
+export const itemIdAuxs = {
+    "emerald/*区別できるキーワード*/" : 512,/*←ID今回はエメラルドのID*/
+    "u-pa-": 369,
+    //...
+}
+```
+
+#### main.js
+あとはコード書くだけ、
 ```js
 import { world } from "@minecraft/server";
 import { ContainerMenu } from "./ContainerMenu/ContainerMenu";

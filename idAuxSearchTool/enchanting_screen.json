@@ -1,0 +1,33 @@
+{
+  "dev_label": {
+    "type": "label",
+    "layer": 23,
+    "color": [0,0,0],
+    "font_size": "extra_large",
+    "text": "#text",
+    "bindings": [
+      {
+        "binding_name": "#input_item_id",
+        "binding_type": "global"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "('dev_' + #input_item_id)",
+        "target_property_name": "#text"
+      }
+    ]
+  },
+  "enchanting_panel": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "insert_front",
+        "value": [
+          {
+            "dev_label@enchanting.dev_label": {}
+          }
+        ]
+      }
+    ]
+  }
+}
