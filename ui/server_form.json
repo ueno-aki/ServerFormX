@@ -387,6 +387,7 @@
   //ContainerMenuフォーム--------------------
   "container_form_store": {
     "type": "panel",
+    "ignored": "#visible",
     "controls": [
       {
         "container_form@server_form.container_form": {}
@@ -418,20 +419,31 @@
     "layer": 2,
     "controls": [
       {
-        "common_panel@common.common_panel": { 
+        "common_panel@common.common_panel": {
           "$dialog_background": "$custom_background",
-          "size": ["100%","100%sm"]
+          "size": [
+            "100%",
+            "100%sm"
+          ]
         }
       },
       {
         "panel_indent": {
           "type": "panel",
-          "size": [ "100% - 16px", "100%c" ],
-          "offset": [ 0, 23 ],
+          "size": [
+            "100% - 16px",
+            "100%c"
+          ],
+          "offset": [
+            0,
+            23
+          ],
           "anchor_from": "top_middle",
           "anchor_to": "top_middle",
           "controls": [
-            { "inside_header_panel@$child_control": {} }
+            {
+              "inside_header_panel@$child_control": {}
+            }
           ]
         }
       }
@@ -445,7 +457,7 @@
     ],
     "size": [
       "100% - 4px",
-      "100%c"
+      "50%c + 20px"
     ],
     "orientation": "vertical",
     "anchor_from": "top_left",
@@ -495,11 +507,11 @@
           "type": "panel",
           "size": [
             "100%",
-            "100%cm + 20px"
+            "100%cm"
           ],
           "controls": [
             {
-              "container_form_dynamic_buttons_panel@server_form.container_form_dynamic_buttons_panel": {
+              "container_form_item_cells@server_form.container_form_dynamic_buttons_panel": {
                 "grid_item_template": "server_form.item_cell_dynamic_button",
                 "factory": {
                   "name": "buttons",
@@ -508,20 +520,13 @@
               }
             },
             {
-              "container_form_ignored_buttons_panel@server_form.container_form_dynamic_buttons_panel": {
-                "grid_item_template": "server_form.item_cell_ignored_button",
+              "container_form_items@server_form.container_form_dynamic_buttons_panel": {
+                "grid_item_template": "server_form.items",
+                "anchor_from":"top_middle",
+                "anchor_to":"center",
                 "factory": {
                   "name": "buttons",
-                  "control_name": "server_form.item_cell_ignored_button"
-                }
-              }
-            },
-            {
-              "container_form_item_renderers@server_form.container_form_dynamic_buttons_panel": {
-                "grid_item_template": "server_form.container_item_renderers",
-                "factory": {
-                  "name": "buttons",
-                  "control_name": "server_form.container_item_renderers"
+                  "control_name": "server_form.items"
                 }
               }
             }
@@ -554,6 +559,7 @@
   },
   "item_cell_dynamic_button": {
     "type": "stack_panel",
+    "ignored": "#visible",
     "size": [
       18,
       "100%x"
@@ -570,14 +576,6 @@
           "$hover_text": "#form_button_text",
           "$default_button_texture": "textures/ui/cell_image",
           "$hover_button_texture": "textures/ui/highlight_slot",
-          "$border_visible": false,
-          "$mapping_type|default": "pressed",
-          "variables": [
-            {
-              "requires": "$touch",
-              "$mapping_type": "double_pressed"
-            }
-          ],
           "$button_image_size": [
             "100%",
             "100%"
@@ -593,6 +591,9 @@
             "100%",
             20
           ],
+          "property_bag":{
+            "#half":0.5
+          },
           "bindings": [
             {
               "binding_type": "collection_details",
@@ -605,8 +606,16 @@
               "binding_collection_name": "form_buttons"
             },
             {
-              "binding_type": "view",
-              "source_property_name": "((#text - '§z§r') = #text)",
+              "binding_name": "#collection_index",
+              "binding_type":"collection",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_name": "#form_button_length"
+            },
+            {
+              "binding_type":"view",
+              "source_property_name": "(#collection_index < (#form_button_length * #half))",
               "target_property_name": "#visible"
             }
           ]
@@ -614,621 +623,60 @@
       }
     ]
   },
-  "item_cell_ignored_button": {
-    "type": "stack_panel",
-    "size": [
-      18,
-      "100%x"
-    ],
-    "orientation": "horizontal",
-    "controls": [
-      {
-        "form_button@common_buttons.container_light_text_button": {
-          "anchor_from": "top_left",
-          "anchor_to": "top_left",
-          "$pressed_button_name": "button.form_button_click",
-          "$button_state_panel_hover": "new_ui_button_panel_with_hover_text",
-          "$button_state_panel": "new_ui_button_panel_test",
-          "$hover_text": "#form_button_text",
-          "$default_button_texture": "textures/ui/cell_image",
-          "$hover_button_texture": "textures/ui/highlight_slot",
-          "$border_visible": false,
-          "$mapping_type|default": "pressed",
-          "button_mappings": [
-            {
-              "ignored":true,
-              "from_button_id": "button.menu_select",
-              "to_button_id": "$pressed_button_name",
-              "mapping_type": "$mapping_type"
-            },
-            {
-              "ignored":true,
-              "from_button_id": "button.menu_ok",
-              "to_button_id": "$pressed_button_name",
-              "mapping_type": "$mapping_type"
-            }
-          ],
-          "variables": [
-            {
-              "requires": "$touch",
-              "$mapping_type": "double_pressed"
-            }
-          ],
-          "$button_image_size": [
-            "100%",
-            "100%"
-          ],
-          "size": [
-            "fill",
-            "100%x"
-          ],
-          "$button_text": "",
-          "$button_text_binding_type": "collection",
-          "$button_text_grid_collection_name": "form_buttons",
-          "$button_text_max_size": [
-            "100%",
-            20
-          ],
-          "bindings": [
-            {
-              "binding_type": "collection_details",
-              "binding_collection_name": "form_buttons"
-            },
-            {
-              "binding_name": "$hover_text",
-              "binding_name_override": "#text",
-              "binding_type": "collection",
-              "binding_collection_name": "form_buttons"
-            },
-            {
-              "binding_type": "view",
-              "source_property_name": "(not ((#text - '§z§r') = #text))",
-              "target_property_name": "#visible"
-            }
-          ]
-        }
-      }
-    ]
-  },
-  "container_item_renderers": {
+  "items": {
     "type": "panel",
+    "ignored": "#visible",
+    "layer": 23,
     "size": [
       18,
-      18
+      "100%x"
     ],
     "controls": [
       {
-        "stone_sword@item_renderer": {
-          "$prefix_string": "§x§3§1§2§r",
-          "property_bag": {
-            "#aux": 20447232
-          }
-        }
-      },
-      {
-        "iron_sword@item_renderer": {
-          "$prefix_string": "§x§3§0§7§r",
-          "property_bag": {
-            "#aux": 20119552
-          }
-        }
-      },
-      {
-        "diamond_sword@item_renderer": {
-          "$prefix_string": "§x§3§1§6§r",
-          "property_bag": {
-            "#aux": 20709376
-          }
-        }
-      },
-      {
-        "netherite_sword@item_renderer": {
-          "$prefix_string": "§x§6§0§4§r",
-          "property_bag": {
-            "#aux": 39583744
-          }
-        }
-      },
-      {
-        "bow@item_renderer": {
-          "$prefix_string": "§x§3§0§0§r",
-          "property_bag": {
-            "#aux": 19660800
-          }
-        }
-      },
-      {
-        "arrow@item_renderer": {
-          "$prefix_string": "§x§3§0§1§r",
-          "property_bag": {
-            "#aux": 19726336
-          }
-        }
-      },
-      {
-        "chainmail_helmet@item_renderer": {
-          "$prefix_string": "§x§3§3§9§r",
-          "property_bag": {
-            "#aux": 22216704
-          }
-        }
-      },
-      {
-        "iron_helmet@item_renderer": {
-          "$prefix_string": "§x§3§4§3§r",
-          "property_bag": {
-            "#aux": 22478848
-          }
-        }
-      },
-      {
-        "diamond_helmet@item_renderer": {
-          "$prefix_string": "§x§3§4§7§r",
-          "property_bag": {
-            "#aux": 22740992
-          }
-        }
-      },
-      {
-        "netherite_helmet@item_renderer": {
-          "$prefix_string": "§x§6§0§9§r",
-          "property_bag": {
-            "#aux": 39911424
-          }
-        }
-      },
-      {
-        "chainmail_chestplate@item_renderer": {
-          "$prefix_string": "§x§3§4§0§r",
-          "property_bag": {
-            "#aux": 22282240
-          }
-        }
-      },
-      {
-        "iron_chestplate@item_renderer": {
-          "$prefix_string": "§x§3§4§4§r",
-          "property_bag": {
-            "#aux": 22544384
-          }
-        }
-      },
-      {
-        "diamond_chestplate@item_renderer": {
-          "$prefix_string": "§x§3§4§8§r",
-          "property_bag": {
-            "#aux": 22806528
-          }
-        }
-      },
-      {
-        "netherite_chestplate@item_renderer": {
-          "$prefix_string": "§x§6§1§0§r",
-          "property_bag": {
-            "#aux": 39976960
-          }
-        }
-      },
-      {
-        "chainmail_leggings@item_renderer": {
-          "$prefix_string": "§x§3§4§1§r",
-          "property_bag": {
-            "#aux": 22347776
-          }
-        }
-      },
-      {
-        "iron_leggings@item_renderer": {
-          "$prefix_string": "§x§3§4§5§r",
-          "property_bag": {
-            "#aux": 22609920
-          }
-        }
-      },
-      {
-        "diamond_leggings@item_renderer": {
-          "$prefix_string": "§x§3§4§9§r",
-          "property_bag": {
-            "#aux": 22872064
-          }
-        }
-      },
-      {
-        "netherite_leggings@item_renderer": {
-          "$prefix_string": "§x§6§1§1§r",
-          "property_bag": {
-            "#aux": 40042496
-          }
-        }
-      },
-      {
-        "chainmail_boots@item_renderer": {
-          "$prefix_string": "§x§3§4§2§r",
-          "property_bag": {
-            "#aux": 22413312
-          }
-        }
-      },
-      {
-        "iron_boots@item_renderer": {
-          "$prefix_string": "§x§3§4§6§r",
-          "property_bag": {
-            "#aux": 22675456
-          }
-        }
-      },
-      {
-        "diamond_boots@item_renderer": {
-          "$prefix_string": "§x§3§5§0§r",
-          "property_bag": {
-            "#aux": 22937600
-          }
-        }
-      },
-      {
-        "netherite_boots@item_renderer": {
-          "$prefix_string": "§x§6§1§2§r",
-          "property_bag": {
-            "#aux": 40108032
-          }
-        }
-      },
-      {
-        "shield@item_renderer": {
-          "$prefix_string": "§x§3§5§5§r",
-          "property_bag": {
-            "#aux": 23265280
-          }
-        }
-      },
-      {
-        "red_wool@item_renderer": {
-          "$prefix_string": "§x§1§4§:§3§5§r",
-          "property_bag": {
-            "#aux": 2293774
-          }
-        }
-      },
-      {
-        "blue_wool@item_renderer": {
-          "$prefix_string": "§x§1§1§:§3§5§r",
-          "property_bag": {
-            "#aux": 2293771
-          }
-        }
-      },
-      {
-        "yellow_wool@item_renderer": {
-          "$prefix_string": "§x§4§:§3§5§r",
-          "property_bag": {
-            "#aux": 2293764
-          }
-        }
-      },
-      {
-        "lime_wool@item_renderer": {
-          "$prefix_string": "§x§5§:§3§5§r",
-          "property_bag": {
-            "#aux": 2293765
-          }
-        }
-      },
-      {
-        "red_concrete@item_renderer": {
-          "$prefix_string": "§x§1§4§:§2§3§6§r",
-          "property_bag": {
-            "#aux": 15466510
-          }
-        }
-      },
-      {
-        "blue_concrete@item_renderer": {
-          "$prefix_string": "§x§1§1§:§2§3§6§r",
-          "property_bag": {
-            "#aux": 15466507
-          }
-        }
-      },
-      {
-        "yellow_concrete@item_renderer": {
-          "$prefix_string": "§x§4§:§2§3§6§r",
-          "property_bag": {
-            "#aux": 15466500
-          }
-        }
-      },
-      {
-        "lime_concrete@item_renderer": {
-          "$prefix_string": "§x§5§:§2§3§6§r",
-          "property_bag": {
-            "#aux": 15466501
-          }
-        }
-      },
-      {
-        "red_stained_glass@item_renderer": {
-          "$prefix_string": "§x§1§4§:§2§4§1§r",
-          "property_bag": {
-            "#aux": 15794190
-          }
-        }
-      },
-      {
-        "blue_stained_glass@item_renderer": {
-          "$prefix_string": "§x§1§1§:§2§4§1§r",
-          "property_bag": {
-            "#aux": 15794187
-          }
-        }
-      },
-      {
-        "yellow_stained_glass@item_renderer": {
-          "$prefix_string": "§x§4§:§2§4§1§r",
-          "property_bag": {
-            "#aux": 15794180
-          }
-        }
-      },
-      {
-        "lime_stained_glass@item_renderer": {
-          "$prefix_string": "§x§5§:§2§4§1§r",
-          "property_bag": {
-            "#aux": 15794181
-          }
-        }
-      },
-      {
-        "oak_planks@item_renderer": {
-          "$prefix_string": "§x§5§r",
-          "property_bag": {
-            "#aux": 327680
-          }
-        }
-      },
-      {
-        "obsidian@item_renderer": {
-          "$prefix_string": "§x§4§9§r",
-          "property_bag": {
-            "#aux": 3211264
-          }
-        }
-      },
-      {
-        "tnt@item_renderer": {
-          "$prefix_string": "§x§4§6§r",
-          "property_bag": {
-            "#aux": 3014656
-          }
-        }
-      },
-      {
-        "end_crystal@item_renderer": {
-          "$prefix_string": "§x§6§5§3§r",
-          "property_bag": {
-            "#aux": 42795008
-          }
-        }
-      },
-      {
-        "fire_charge@item_renderer": {
-          "$prefix_string": "§x§5§0§9§r",
-          "property_bag": {
-            "#aux": 33357824
-          }
-        }
-      },
-      {
-        "ender_pearl@item_renderer": {
-          "$prefix_string": "§x§4§2§2§r",
-          "property_bag": {
-            "#aux": 27656192
-          }
-        }
-      },
-      {
-        "golden_apple@item_renderer": {
-          "$prefix_string": "§x§2§5§8§r",
-          "property_bag": {
-            "#aux": 16908288
-          }
-        }
-      },
-      {
-        "water_bucket@item_renderer": {
-          "$prefix_string": "§x§3§6§2§r",
-          "property_bag": {
-            "#aux": 23724032
-          }
-        }
-      },
-      {
-        "lava_bucket@item_renderer": {
-          "$prefix_string": "§x§3§6§3§r",
-          "property_bag": {
-            "#aux": 23789568
-          }
-        }
-      },
-      {
-        "web@item_renderer": {
-          "$prefix_string": "§x§3§0§r",
-          "property_bag": {
-            "#aux": 1966080
-          }
-        }
-      },
-      {
-        "invisibility_potion@item_renderer": {
-          "$prefix_string": "§x§7§:§4§2§6§r",
-          "property_bag": {
-            "#aux": 27918343
-          }
-        }
-      },
-      {
-        "healing_potion@item_renderer": {
-          "$prefix_string": "§x§2§1§:§4§2§6§r",
-          "property_bag": {
-            "#aux": 27918357
-          }
-        }
-      },
-      {
-        "swift_potion@item_renderer": {
-          "$prefix_string": "§x§1§4§:§4§2§6§r",
-          "property_bag": {
-            "#aux": 27918350
-          }
-        }
-      },
-      {
-        "leaping_potion@item_renderer": {
-          "$prefix_string": "§x§9§:§4§2§6§r",
-          "property_bag": {
-            "#aux": 27918345
-          }
-        }
-      },
-      {
-        "strength_potion@item_renderer": {
-          "$prefix_string": "§x§3§1§:§4§2§6§r",
-          "property_bag": {
-            "#aux": 27918367
-          }
-        }
-      },
-      {
-        "wooden_pickaxe@item_renderer": {
-          "$prefix_string": "§x§3§1§0§r",
-          "property_bag": {
-            "#aux": 20316160
-          }
-        }
-      },
-      {
-        "stone_pickaxe@item_renderer": {
-          "$prefix_string": "§x§3§1§4§r",
-          "property_bag": {
-            "#aux": 20578304
-          }
-        }
-      },
-      {
-        "iron_pickaxe@item_renderer": {
-          "$prefix_string": "§x§2§9§7§r",
-          "property_bag": {
-            "#aux": 19464192
-          }
-        }
-      },
-      {
-        "diamond_pickaxe@item_renderer": {
-          "$prefix_string": "§x§3§1§8§r",
-          "property_bag": {
-            "#aux": 20840448
-          }
-        }
-      },
-      {
-        "netherite_pickaxe@item_renderer": {
-          "$prefix_string": "§x§6§0§6§r",
-          "property_bag": {
-            "#aux": 39714816
-          }
-        }
-      },
-      {
-        "wooden_axe@item_renderer": {
-          "$prefix_string": "§x§3§1§1§r",
-          "property_bag": {
-            "#aux": 20381696
-          }
-        }
-      },
-      {
-        "stone_axe@item_renderer": {
-          "$prefix_string": "§x§3§1§5§r",
-          "property_bag": {
-            "#aux": 20643840
-          }
-        }
-      },
-      {
-        "iron_axe@item_renderer": {
-          "$prefix_string": "§x§2§9§8§r",
-          "property_bag": {
-            "#aux": 19529728
-          }
-        }
-      },
-      {
-        "diamond_axe@item_renderer": {
-          "$prefix_string": "§x§3§1§9§r",
-          "property_bag": {
-            "#aux": 20905984
-          }
-        }
-      },
-      {
-        "netherite_axe@item_renderer": {
-          "$prefix_string": "§x§6§0§7§r",
-          "property_bag": {
-            "#aux": 39780352
-          }
-        }
-      },
-      {
-        "shears@item_renderer": {
-          "$prefix_string": "§x§4§2§1§r",
-          "property_bag": {
-            "#aux": 27590656
-          }
-        }
-      },
-      {
-        "barrier@item_renderer": {
-          "$prefix_string": "§x§-§1§6§1§r",
-          "property_bag": {
-            "#aux": -10551296
-          }
-        }
-      },
-      {
-        "clock@item_renderer": {
-          "$prefix_string": "§x§3§9§3§r",
-          "property_bag": {
-            "#aux": 25755648
-          }
+        "item_renderer": {
+          "type":"custom",
+          "renderer":"inventory_item_renderer",
+          "size": [16,16],
+          "bindings":[
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text",
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_type":"view",
+              "source_property_name": "(#text * 1)",
+              "target_property_name": "#item_id_aux"
+            }
+          ]
         }
       }
     ],
-    "layer": 23
-  },
-  "item_renderer": {
-    "type": "custom",
-    "ignored": "(not #visible)",
-    "renderer": "inventory_item_renderer",
-    "$prefix_string|default": "",
-    "size": [
-      16,
-      16
-    ],
+    "property_bag":{
+      "#half":0.5
+    },
     "bindings": [
       {
-        "binding_name": "#form_button_text",
-        "binding_name_override": "#text",
-        "binding_type": "collection",
+        "binding_type": "collection_details",
         "binding_collection_name": "form_buttons"
       },
       {
-        "binding_type": "view",
-        "source_property_name": "(not ((#text - $prefix_string) = #text))",
-        "target_property_name": "#visible"
+        "binding_name": "#collection_index",
+        "binding_type":"collection",
+        "binding_collection_name": "form_buttons"
       },
       {
-        "binding_type": "view",
-        "source_property_name": "(((not((#text - '§y§r') = #text) * 1) * 32768) + #aux)",
-        "target_property_name": "#item_id_aux"
+        "binding_name": "#form_button_length"
+      },
+      {
+        "binding_type":"view",
+        "source_property_name": "(not (#collection_index < (#form_button_length * #half)))",
+        "target_property_name": "#visible"
       }
     ]
   }

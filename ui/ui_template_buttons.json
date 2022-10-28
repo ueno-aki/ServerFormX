@@ -108,11 +108,6 @@
               "binding_name_override": "#hover_text",
               "binding_type": "collection",
               "binding_collection_name": "form_buttons"
-            },
-            {
-              "binding_type": "view",
-              "source_property_name": "((#hover_text - '§w§r') = #hover_text)",
-              "target_property_name": "#visible"
             }
           ]
         }
@@ -155,7 +150,7 @@
           "color": "$border_color",
           "layer": "$border_layer",
           "alpha": "$border_alpha",
-          "ignored": "(not $border_visible)"
+          "ignored": true
         }
       }
     ]
