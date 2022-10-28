@@ -17,6 +17,8 @@
 3. 出てきたIDAux(まだIDではない)をメモ
 4. IDAux(以降aux)から計算してIDを求める
 > ID = (aux - (データ値) - (エンチャントしてる場合32768)) / 65536
+***[このサイト](https://lukaspah.github.io/item_aux_calculator/)でも調べられるけどアドオンでアイテムを追加したりするとずれる場合あり***
+
 
 #### Script API
 * itemIDAux.js
