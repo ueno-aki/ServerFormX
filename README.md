@@ -23,7 +23,8 @@
 
 
 ### Script API
-* itemIDAux.js  
+* itemIDAux.js
+
 IDとキーワードを登録する
 ```js
 export const itemIdAuxs = {
@@ -33,7 +34,8 @@ export const itemIdAuxs = {
 }
 ```
 
-* main.js  
+* main.js
+
 あとはコード書くだけ、
 ```js
 import { world } from "@minecraft/server";
