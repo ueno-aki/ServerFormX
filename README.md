@@ -10,11 +10,11 @@
 * 職業メニュー
 
 # containerMenu
-### IDの求め方
-##### ***以下のサイトから調べられる.ただしアドオンでアイテムを追加したりするとずれる場合あり***
+### IDの求め方  
+***以下のサイトから調べられる.ただしアドオンでアイテムを追加したりするとずれる場合あり***
 * https://learn.microsoft.com/en-us/minecraft/creator/reference/content/addonsreference/examples/addonitems (マイクロソフト様)
-* https://lukaspah.github.io/item_aux_calculator/ (海外の有志の方)
-##### ***IDがずれている場合は手探りで求める.以下の方法***
+* https://lukaspah.github.io/item_aux_calculator/ (海外の有志の方)  
+***IDがずれている場合は手探りで求める.以下の方法***
 1. idAuxSearchToolフォルダのエンチャント台のUIを適用させる.
 2. エンチャント台をワールドで開いて左のスロットに調べたいアイテムを入れる
 3. 出てきたIDAux(まだIDではない)をメモ
@@ -23,7 +23,7 @@
 
 
 ### Script API
-* itemIDAux.js
+* itemIDAux.js  
 IDとキーワードを登録する
 ```js
 export const itemIdAuxs = {
@@ -33,7 +33,7 @@ export const itemIdAuxs = {
 }
 ```
 
-* main.js
+* main.js  
 あとはコード書くだけ、
 ```js
 import { world } from "@minecraft/server";
