@@ -9,9 +9,8 @@
 * パイメニュー
 * 職業メニュー
 
-# Usage
-### containerMenu
-#### IDの求め方
+# containerMenu
+### IDの求め方
 ##### ***以下のサイトから調べられる.ただしアドオンでアイテムを追加したりするとずれる場合あり***
 * https://learn.microsoft.com/en-us/minecraft/creator/reference/content/addonsreference/examples/addonitems (マイクロソフト様)
 * https://lukaspah.github.io/item_aux_calculator/ (海外の有志の方)
@@ -23,7 +22,7 @@
 > ID = (aux - (データ値) - (エンチャントしてる場合32768)) / 65536
 
 
-#### Script API
+### Script API
 * itemIDAux.js
 IDとキーワードを登録する
 ```js
