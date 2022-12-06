@@ -456,7 +456,7 @@
     ],
     "size": [
       "100% - 4px",
-      "50%c + 20px"
+      "100%c + 20px"
     ],
     "orientation": "vertical",
     "anchor_from": "top_left",
@@ -552,14 +552,14 @@
       "100%x"
     ],
     "orientation": "horizontal",
+    "$ignored_string": "@",
+    "$prefix": "^",
+    "$digit": 5,
     "controls": [
       {
         "form_button@common_buttons.container_light_text_button": {
           "anchor_from": "top_left",
           "anchor_to": "top_left",
-          "$ignored_string": "@",
-          "$prefix": "^",
-          "$digit": 5,
           "$pressed_button_name": "button.form_button_click",
           "$button_state_panel_hover": "new_ui_button_panel_with_hover_text",
           "$button_state_panel": "new_ui_button_panel_test",
