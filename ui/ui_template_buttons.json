@@ -102,12 +102,34 @@
       {
         "hover_text@common.hover_text": {
           "layer": 29,
+          "$index":1,
           "bindings": [
             {
-              "binding_name": "$hover_text",
-              "binding_name_override": "#hover_text",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text",
               "binding_type": "collection",
               "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_name": "#collection_index",
+              "binding_name_override": "#index",
+              "binding_type":"collection",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_type":"view",
+              "source_property_name": "(('%.' + $digit + 's') * #text)",
+              "target_property_name": "#header"
+            },
+            {
+              "binding_type":"view",
+              "source_property_name": "((('%.' + $digit + 's') * #text) - $prefix)",
+              "target_property_name": "#length"
+            },
+            {
+              "binding_type":"view",
+              "source_property_name": "(((('%.' + (($index + 1) * #length) + 's') * (#text - #header)) - (('%.' + ($index * #length) + 's') * (#text - #header))) - $ignored_string)",
+              "target_property_name": "#hover_text"
             }
           ]
         }
