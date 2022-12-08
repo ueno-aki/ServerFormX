@@ -56,6 +56,9 @@
       },
       {
         "container_form_store@server_form.container_form_store": {}
+      },
+      {
+        "kit_menu_store@server_form.kit_menu_store": {}
       }
     ]
   },
@@ -74,7 +77,7 @@
     "bindings": [
       {
         "binding_type": "view",
-        "source_property_name": "((not (#title_text = 'container')) and ((#title_text - '§m§a§p§r') = #title_text))",
+        "source_property_name": "(((not (#title_text = 'container')) and ((#title_text - '§m§a§p§r') = #title_text)) and ((#title_text - '§k§i§t§r') = #title_text))",
         "target_property_name": "#visible"
       }
     ]
@@ -418,20 +421,31 @@
     "layer": 2,
     "controls": [
       {
-        "common_panel@common.common_panel": { 
+        "common_panel@common.common_panel": {
           "$dialog_background": "$custom_background",
-          "size": ["100%","100%sm"]
+          "size": [
+            "100%",
+            "100%sm"
+          ]
         }
       },
       {
         "panel_indent": {
           "type": "panel",
-          "size": [ "100% - 16px", "100%c" ],
-          "offset": [ 0, 23 ],
+          "size": [
+            "100% - 16px",
+            "100%c"
+          ],
+          "offset": [
+            0,
+            23
+          ],
           "anchor_from": "top_middle",
           "anchor_to": "top_middle",
           "controls": [
-            { "inside_header_panel@$child_control": {} }
+            {
+              "inside_header_panel@$child_control": {}
+            }
           ]
         }
       }
@@ -445,7 +459,7 @@
     ],
     "size": [
       "100% - 4px",
-      "100%c"
+      "100%c + 20px"
     ],
     "orientation": "vertical",
     "anchor_from": "top_left",
@@ -495,33 +509,15 @@
           "type": "panel",
           "size": [
             "100%",
-            "100%cm + 20px"
+            "100%cm"
           ],
           "controls": [
             {
-              "container_form_dynamic_buttons_panel@server_form.container_form_dynamic_buttons_panel": {
+              "container_form_item_cells@server_form.container_form_dynamic_buttons_panel": {
                 "grid_item_template": "server_form.item_cell_dynamic_button",
                 "factory": {
                   "name": "buttons",
                   "control_name": "server_form.item_cell_dynamic_button"
-                }
-              }
-            },
-            {
-              "container_form_ignored_buttons_panel@server_form.container_form_dynamic_buttons_panel": {
-                "grid_item_template": "server_form.item_cell_ignored_button",
-                "factory": {
-                  "name": "buttons",
-                  "control_name": "server_form.item_cell_ignored_button"
-                }
-              }
-            },
-            {
-              "container_form_item_renderers@server_form.container_form_dynamic_buttons_panel": {
-                "grid_item_template": "server_form.container_item_renderers",
-                "factory": {
-                  "name": "buttons",
-                  "control_name": "server_form.container_item_renderers"
                 }
               }
             }
@@ -559,6 +555,9 @@
       "100%x"
     ],
     "orientation": "horizontal",
+    "$ignored_string": "@",
+    "$prefix": "^",
+    "$digit": 5,
     "controls": [
       {
         "form_button@common_buttons.container_light_text_button": {
@@ -567,17 +566,8 @@
           "$pressed_button_name": "button.form_button_click",
           "$button_state_panel_hover": "new_ui_button_panel_with_hover_text",
           "$button_state_panel": "new_ui_button_panel_test",
-          "$hover_text": "#form_button_text",
           "$default_button_texture": "textures/ui/cell_image",
           "$hover_button_texture": "textures/ui/highlight_slot",
-          "$border_visible": false,
-          "$mapping_type|default": "pressed",
-          "variables": [
-            {
-              "requires": "$touch",
-              "$mapping_type": "double_pressed"
-            }
-          ],
           "$button_image_size": [
             "100%",
             "100%"
@@ -597,638 +587,319 @@
             {
               "binding_type": "collection_details",
               "binding_collection_name": "form_buttons"
-            },
-            {
-              "binding_name": "$hover_text",
-              "binding_name_override": "#text",
-              "binding_type": "collection",
-              "binding_collection_name": "form_buttons"
-            },
-            {
-              "binding_type": "view",
-              "source_property_name": "((#text - '§z§r') = #text)",
-              "target_property_name": "#visible"
             }
           ]
         }
       }
     ]
   },
-  "item_cell_ignored_button": {
-    "type": "stack_panel",
-    "size": [
-      18,
-      "100%x"
-    ],
-    "orientation": "horizontal",
-    "controls": [
-      {
-        "form_button@common_buttons.container_light_text_button": {
-          "anchor_from": "top_left",
-          "anchor_to": "top_left",
-          "$pressed_button_name": "button.form_button_click",
-          "$button_state_panel_hover": "new_ui_button_panel_with_hover_text",
-          "$button_state_panel": "new_ui_button_panel_test",
-          "$hover_text": "#form_button_text",
-          "$default_button_texture": "textures/ui/cell_image",
-          "$hover_button_texture": "textures/ui/highlight_slot",
-          "$border_visible": false,
-          "$mapping_type|default": "pressed",
-          "button_mappings": [
-            {
-              "ignored":true,
-              "from_button_id": "button.menu_select",
-              "to_button_id": "$pressed_button_name",
-              "mapping_type": "$mapping_type"
-            },
-            {
-              "ignored":true,
-              "from_button_id": "button.menu_ok",
-              "to_button_id": "$pressed_button_name",
-              "mapping_type": "$mapping_type"
-            }
-          ],
-          "variables": [
-            {
-              "requires": "$touch",
-              "$mapping_type": "double_pressed"
-            }
-          ],
-          "$button_image_size": [
-            "100%",
-            "100%"
-          ],
-          "size": [
-            "fill",
-            "100%x"
-          ],
-          "$button_text": "",
-          "$button_text_binding_type": "collection",
-          "$button_text_grid_collection_name": "form_buttons",
-          "$button_text_max_size": [
-            "100%",
-            20
-          ],
-          "bindings": [
-            {
-              "binding_type": "collection_details",
-              "binding_collection_name": "form_buttons"
-            },
-            {
-              "binding_name": "$hover_text",
-              "binding_name_override": "#text",
-              "binding_type": "collection",
-              "binding_collection_name": "form_buttons"
-            },
-            {
-              "binding_type": "view",
-              "source_property_name": "(not ((#text - '§z§r') = #text))",
-              "target_property_name": "#visible"
-            }
-          ]
-        }
-      }
-    ]
-  },
-  "container_item_renderers": {
+  //KITフォーム---------------------------
+  "kit_menu_store": {
     "type": "panel",
+    "offset": [0,-15],
     "size": [
-      18,
-      18
+      "320px",
+      "200px"
     ],
     "controls": [
       {
-        "stone_sword@item_renderer": {
-          "$prefix_string": "§x§3§1§2§r",
-          "property_bag": {
-            "#aux": 20447232
-          }
+        "kit_menu@server_form.kit_menu": {
+          "layer": 7
         }
       },
       {
-        "iron_sword@item_renderer": {
-          "$prefix_string": "§x§3§0§7§r",
-          "property_bag": {
-            "#aux": 20119552
-          }
+        "title": {
+          "type":"label",
+          "layer": 23,
+          "text": "#title_text",
+          "anchor_from":"top_middle",
+          "anchor_to":"top_middle",
+          "offset": ["25% - 5px",10]
         }
       },
       {
-        "diamond_sword@item_renderer": {
-          "$prefix_string": "§x§3§1§6§r",
-          "property_bag": {
-            "#aux": 20709376
-          }
+        "book_left_page@server_form.book_left_page": {
+          "layer": 23
         }
       },
       {
-        "netherite_sword@item_renderer": {
-          "$prefix_string": "§x§6§0§4§r",
-          "property_bag": {
-            "#aux": 39583744
-          }
-        }
-      },
-      {
-        "bow@item_renderer": {
-          "$prefix_string": "§x§3§0§0§r",
-          "property_bag": {
-            "#aux": 19660800
-          }
-        }
-      },
-      {
-        "arrow@item_renderer": {
-          "$prefix_string": "§x§3§0§1§r",
-          "property_bag": {
-            "#aux": 19726336
-          }
-        }
-      },
-      {
-        "chainmail_helmet@item_renderer": {
-          "$prefix_string": "§x§3§3§9§r",
-          "property_bag": {
-            "#aux": 22216704
-          }
-        }
-      },
-      {
-        "iron_helmet@item_renderer": {
-          "$prefix_string": "§x§3§4§3§r",
-          "property_bag": {
-            "#aux": 22478848
-          }
-        }
-      },
-      {
-        "diamond_helmet@item_renderer": {
-          "$prefix_string": "§x§3§4§7§r",
-          "property_bag": {
-            "#aux": 22740992
-          }
-        }
-      },
-      {
-        "netherite_helmet@item_renderer": {
-          "$prefix_string": "§x§6§0§9§r",
-          "property_bag": {
-            "#aux": 39911424
-          }
-        }
-      },
-      {
-        "chainmail_chestplate@item_renderer": {
-          "$prefix_string": "§x§3§4§0§r",
-          "property_bag": {
-            "#aux": 22282240
-          }
-        }
-      },
-      {
-        "iron_chestplate@item_renderer": {
-          "$prefix_string": "§x§3§4§4§r",
-          "property_bag": {
-            "#aux": 22544384
-          }
-        }
-      },
-      {
-        "diamond_chestplate@item_renderer": {
-          "$prefix_string": "§x§3§4§8§r",
-          "property_bag": {
-            "#aux": 22806528
-          }
-        }
-      },
-      {
-        "netherite_chestplate@item_renderer": {
-          "$prefix_string": "§x§6§1§0§r",
-          "property_bag": {
-            "#aux": 39976960
-          }
-        }
-      },
-      {
-        "chainmail_leggings@item_renderer": {
-          "$prefix_string": "§x§3§4§1§r",
-          "property_bag": {
-            "#aux": 22347776
-          }
-        }
-      },
-      {
-        "iron_leggings@item_renderer": {
-          "$prefix_string": "§x§3§4§5§r",
-          "property_bag": {
-            "#aux": 22609920
-          }
-        }
-      },
-      {
-        "diamond_leggings@item_renderer": {
-          "$prefix_string": "§x§3§4§9§r",
-          "property_bag": {
-            "#aux": 22872064
-          }
-        }
-      },
-      {
-        "netherite_leggings@item_renderer": {
-          "$prefix_string": "§x§6§1§1§r",
-          "property_bag": {
-            "#aux": 40042496
-          }
-        }
-      },
-      {
-        "chainmail_boots@item_renderer": {
-          "$prefix_string": "§x§3§4§2§r",
-          "property_bag": {
-            "#aux": 22413312
-          }
-        }
-      },
-      {
-        "iron_boots@item_renderer": {
-          "$prefix_string": "§x§3§4§6§r",
-          "property_bag": {
-            "#aux": 22675456
-          }
-        }
-      },
-      {
-        "diamond_boots@item_renderer": {
-          "$prefix_string": "§x§3§5§0§r",
-          "property_bag": {
-            "#aux": 22937600
-          }
-        }
-      },
-      {
-        "netherite_boots@item_renderer": {
-          "$prefix_string": "§x§6§1§2§r",
-          "property_bag": {
-            "#aux": 40108032
-          }
-        }
-      },
-      {
-        "shield@item_renderer": {
-          "$prefix_string": "§x§3§5§5§r",
-          "property_bag": {
-            "#aux": 23265280
-          }
-        }
-      },
-      {
-        "red_wool@item_renderer": {
-          "$prefix_string": "§x§1§4§:§3§5§r",
-          "property_bag": {
-            "#aux": 2293774
-          }
-        }
-      },
-      {
-        "blue_wool@item_renderer": {
-          "$prefix_string": "§x§1§1§:§3§5§r",
-          "property_bag": {
-            "#aux": 2293771
-          }
-        }
-      },
-      {
-        "yellow_wool@item_renderer": {
-          "$prefix_string": "§x§4§:§3§5§r",
-          "property_bag": {
-            "#aux": 2293764
-          }
-        }
-      },
-      {
-        "lime_wool@item_renderer": {
-          "$prefix_string": "§x§5§:§3§5§r",
-          "property_bag": {
-            "#aux": 2293765
-          }
-        }
-      },
-      {
-        "red_concrete@item_renderer": {
-          "$prefix_string": "§x§1§4§:§2§3§6§r",
-          "property_bag": {
-            "#aux": 15466510
-          }
-        }
-      },
-      {
-        "blue_concrete@item_renderer": {
-          "$prefix_string": "§x§1§1§:§2§3§6§r",
-          "property_bag": {
-            "#aux": 15466507
-          }
-        }
-      },
-      {
-        "yellow_concrete@item_renderer": {
-          "$prefix_string": "§x§4§:§2§3§6§r",
-          "property_bag": {
-            "#aux": 15466500
-          }
-        }
-      },
-      {
-        "lime_concrete@item_renderer": {
-          "$prefix_string": "§x§5§:§2§3§6§r",
-          "property_bag": {
-            "#aux": 15466501
-          }
-        }
-      },
-      {
-        "red_stained_glass@item_renderer": {
-          "$prefix_string": "§x§1§4§:§2§4§1§r",
-          "property_bag": {
-            "#aux": 15794190
-          }
-        }
-      },
-      {
-        "blue_stained_glass@item_renderer": {
-          "$prefix_string": "§x§1§1§:§2§4§1§r",
-          "property_bag": {
-            "#aux": 15794187
-          }
-        }
-      },
-      {
-        "yellow_stained_glass@item_renderer": {
-          "$prefix_string": "§x§4§:§2§4§1§r",
-          "property_bag": {
-            "#aux": 15794180
-          }
-        }
-      },
-      {
-        "lime_stained_glass@item_renderer": {
-          "$prefix_string": "§x§5§:§2§4§1§r",
-          "property_bag": {
-            "#aux": 15794181
-          }
-        }
-      },
-      {
-        "oak_planks@item_renderer": {
-          "$prefix_string": "§x§5§r",
-          "property_bag": {
-            "#aux": 327680
-          }
-        }
-      },
-      {
-        "obsidian@item_renderer": {
-          "$prefix_string": "§x§4§9§r",
-          "property_bag": {
-            "#aux": 3211264
-          }
-        }
-      },
-      {
-        "tnt@item_renderer": {
-          "$prefix_string": "§x§4§6§r",
-          "property_bag": {
-            "#aux": 3014656
-          }
-        }
-      },
-      {
-        "end_crystal@item_renderer": {
-          "$prefix_string": "§x§6§5§3§r",
-          "property_bag": {
-            "#aux": 42795008
-          }
-        }
-      },
-      {
-        "fire_charge@item_renderer": {
-          "$prefix_string": "§x§5§0§9§r",
-          "property_bag": {
-            "#aux": 33357824
-          }
-        }
-      },
-      {
-        "ender_pearl@item_renderer": {
-          "$prefix_string": "§x§4§2§2§r",
-          "property_bag": {
-            "#aux": 27656192
-          }
-        }
-      },
-      {
-        "golden_apple@item_renderer": {
-          "$prefix_string": "§x§2§5§8§r",
-          "property_bag": {
-            "#aux": 16908288
-          }
-        }
-      },
-      {
-        "water_bucket@item_renderer": {
-          "$prefix_string": "§x§3§6§2§r",
-          "property_bag": {
-            "#aux": 23724032
-          }
-        }
-      },
-      {
-        "lava_bucket@item_renderer": {
-          "$prefix_string": "§x§3§6§3§r",
-          "property_bag": {
-            "#aux": 23789568
-          }
-        }
-      },
-      {
-        "web@item_renderer": {
-          "$prefix_string": "§x§3§0§r",
-          "property_bag": {
-            "#aux": 1966080
-          }
-        }
-      },
-      {
-        "invisibility_potion@item_renderer": {
-          "$prefix_string": "§x§7§:§4§2§6§r",
-          "property_bag": {
-            "#aux": 27918343
-          }
-        }
-      },
-      {
-        "healing_potion@item_renderer": {
-          "$prefix_string": "§x§2§1§:§4§2§6§r",
-          "property_bag": {
-            "#aux": 27918357
-          }
-        }
-      },
-      {
-        "swift_potion@item_renderer": {
-          "$prefix_string": "§x§1§4§:§4§2§6§r",
-          "property_bag": {
-            "#aux": 27918350
-          }
-        }
-      },
-      {
-        "leaping_potion@item_renderer": {
-          "$prefix_string": "§x§9§:§4§2§6§r",
-          "property_bag": {
-            "#aux": 27918345
-          }
-        }
-      },
-      {
-        "strength_potion@item_renderer": {
-          "$prefix_string": "§x§3§1§:§4§2§6§r",
-          "property_bag": {
-            "#aux": 27918367
-          }
-        }
-      },
-      {
-        "wooden_pickaxe@item_renderer": {
-          "$prefix_string": "§x§3§1§0§r",
-          "property_bag": {
-            "#aux": 20316160
-          }
-        }
-      },
-      {
-        "stone_pickaxe@item_renderer": {
-          "$prefix_string": "§x§3§1§4§r",
-          "property_bag": {
-            "#aux": 20578304
-          }
-        }
-      },
-      {
-        "iron_pickaxe@item_renderer": {
-          "$prefix_string": "§x§2§9§7§r",
-          "property_bag": {
-            "#aux": 19464192
-          }
-        }
-      },
-      {
-        "diamond_pickaxe@item_renderer": {
-          "$prefix_string": "§x§3§1§8§r",
-          "property_bag": {
-            "#aux": 20840448
-          }
-        }
-      },
-      {
-        "netherite_pickaxe@item_renderer": {
-          "$prefix_string": "§x§6§0§6§r",
-          "property_bag": {
-            "#aux": 39714816
-          }
-        }
-      },
-      {
-        "wooden_axe@item_renderer": {
-          "$prefix_string": "§x§3§1§1§r",
-          "property_bag": {
-            "#aux": 20381696
-          }
-        }
-      },
-      {
-        "stone_axe@item_renderer": {
-          "$prefix_string": "§x§3§1§5§r",
-          "property_bag": {
-            "#aux": 20643840
-          }
-        }
-      },
-      {
-        "iron_axe@item_renderer": {
-          "$prefix_string": "§x§2§9§8§r",
-          "property_bag": {
-            "#aux": 19529728
-          }
-        }
-      },
-      {
-        "diamond_axe@item_renderer": {
-          "$prefix_string": "§x§3§1§9§r",
-          "property_bag": {
-            "#aux": 20905984
-          }
-        }
-      },
-      {
-        "netherite_axe@item_renderer": {
-          "$prefix_string": "§x§6§0§7§r",
-          "property_bag": {
-            "#aux": 39780352
-          }
-        }
-      },
-      {
-        "shears@item_renderer": {
-          "$prefix_string": "§x§4§2§1§r",
-          "property_bag": {
-            "#aux": 27590656
-          }
-        }
-      },
-      {
-        "barrier@item_renderer": {
-          "$prefix_string": "§x§-§1§6§1§r",
-          "property_bag": {
-            "#aux": -10551296
-          }
-        }
-      },
-      {
-        "clock@item_renderer": {
-          "$prefix_string": "§x§3§9§3§r",
-          "property_bag": {
-            "#aux": 25755648
-          }
+        "book_wrapping_panel@server_form.book_wrapping_panel":{
+          "layer": 2
         }
       }
-    ],
-    "layer": 23
-  },
-  "item_renderer": {
-    "type": "custom",
-    "ignored": "(not #visible)",
-    "renderer": "inventory_item_renderer",
-    "$prefix_string|default": "",
-    "size": [
-      16,
-      16
     ],
     "bindings": [
       {
-        "binding_name": "#form_button_text",
-        "binding_name_override": "#text",
-        "binding_type": "collection",
-        "binding_collection_name": "form_buttons"
-      },
-      {
         "binding_type": "view",
-        "source_property_name": "(not ((#text - $prefix_string) = #text))",
+        "source_property_name": "(not ((#title_text - '§k§i§t§r') = #title_text))",
         "target_property_name": "#visible"
+      }
+    ]
+  },
+  "kit_menu@common_dialogs.main_panel_no_buttons": {
+    "$custom_background": "common.empty_panel",
+    "$title_panel": "common_dialogs.standard_title_label",
+    "size": [
+      "100% - 20px",
+      "100% - 5px"
+    ],
+    "$title_text_binding_type": "none",
+    "$child_control": "server_form.kit_menu_panel"
+  },
+
+  "kit_menu_panel" : {
+    "type": "stack_panel",
+    "size": ["133px", "100%"],
+    "orientation": "vertical",
+    "layer": 1,
+    "anchor_from": "top_right",
+    "anchor_to": "top_right",
+    "controls": [
+      
+      {
+        "scrolling_panel@common.scrolling_panel": {
+          "anchor_to": "top_left",
+          "anchor_from": "top_left",
+          "$show_background": false,
+          "size": [ "100%", "100% - 10px" ],
+          "$scrolling_content": "server_form.kit_menu_scrolling_content",
+          "$scroll_size": [ 5, "100% - 4px" ],
+          "$scrolling_pane_size": [ "100% - 4px", "100% - 2px" ],
+          "$scrolling_pane_offset": [ 2, 0 ],
+          "$scroll_bar_right_padding_size": [ 0, 0 ]
+        }
+      }
+    ]
+  },
+
+  "kit_menu_scrolling_content": {
+    "type": "stack_panel",
+    "size": [ "100% - 4px", "100%c" ],
+    "orientation": "vertical",
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+
+    "controls": [
+      {
+        "wrapping_panel": {
+          "type": "panel",
+          "size": [ "100%", "100%c" ],
+          "controls": [
+            {
+              "kit_menu_dynamic_buttons_panel@server_form.kit_menu_dynamic_buttons_panel": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "kit_menu_dynamic_buttons_panel": {
+    "type": "stack_panel",
+    "size": ["100%", "100%c"],
+    "orientation": "vertical",
+    "anchor_from": "top_right",
+    "anchor_to": "top_right",
+
+    "factory":{
+      "name": "buttons",
+      "control_name": "server_form.kit_menu_dynamic_button"
+    },
+
+    "collection_name": "form_buttons",
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+
+  "kit_menu_dynamic_button": {
+    "type": "stack_panel",
+    "size": ["100%", 32],
+    "orientation": "horizontal",
+    "controls":[
+      {
+        "panel_name": {
+          "type": "panel",
+          "size": [34, "100%c"],
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_control_name": "image",
+              "resolve_sibling_scope": true,
+              "source_property_name": "(not (#texture = ''))",
+              "target_property_name": "#visible"
+            }
+          ],
+
+          "controls": [
+            {
+              "image": {
+                "type": "image",
+                "layer": 2,
+                "size": [32, 32],
+                "offset": [-2, 0],
+                "bindings":[
+                  {
+                    "binding_name": "#form_button_texture",
+                    "binding_name_override": "#texture",
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons"
+                  },
+                  {
+                    "binding_name": "#form_button_texture_file_system",
+                    "binding_name_override": "#texture_file_system",
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "(not ((#texture = '') or (#texture = 'loading')))",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "progress@progress.progress_loading_bars": {
+                "size": [30, 4],
+                "offset": [-2, 16],
+                "bindings":[
+                  {
+                    "binding_type": "view",
+                    "source_control_name": "image",
+                    "resolve_sibling_scope": true,
+                    "source_property_name": "(#texture = 'loading')",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
       },
       {
-        "binding_type": "view",
-        "source_property_name": "(((not((#text - '§y§r') = #text) * 1) * 32768) + #aux)",
-        "target_property_name": "#item_id_aux"
+        "form_button@common_buttons.kit_light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "size": [ "fill", 32 ],
+          "$button_text": "#form_button_text",
+          "$button_text_binding_type": "collection",
+          "$button_text_grid_collection_name": "form_buttons",
+          "$button_text_max_size": [ "100%", 20 ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  //本の画像組み立て
+  "book_wrapping_panel": {
+    "type":"panel",
+    "controls":[
+      {
+        "background_kit_menu@server_form.background_kit_menu": {
+          "layer": 0
+        }
+      },
+      {
+        "book_spine": {
+          "type":"image",
+          "texture": "textures/ui/book_spine",
+          "layer": 1,
+          "size": ["8px","100% - 2px"]
+        }
+      },
+      {
+        "page_edge_left_image": {
+          "type":"image",
+          "anchor_from":"left_middle",
+          "anchor_to":"left_middle",
+          "texture": "textures/ui/book_pageedge_left",
+          "layer": 2,
+          "offset": [7,-1],
+          "size": ["50% - 7px","100% - 16px"]
+        }
+      },
+      {
+        "page_crease_left_image": {
+          "type":"image",
+          "anchor_from":"center",
+          "anchor_to":"right_middle",
+          "texture": "textures/ui/book_pagecrease_left",
+          "layer": 3,
+          "offset": [0,-2],
+          "size": ["50% - 40px","100% - 14px"]
+        }
+      },
+      {
+        "page_edge_right_image": {
+          "type":"image",
+          "anchor_from":"right_middle",
+          "anchor_to":"right_middle",
+          "texture": "textures/ui/book_pageedge_right",
+          "layer": 2,
+          "offset": [-7,-1],
+          "size": ["50% - 7px","100% - 16px"]
+        }
+      },
+      {
+        "page_crease_right_image": {
+          "type":"image",
+          "anchor_from":"center",
+          "anchor_to":"left_middle",
+          "texture": "textures/ui/book_pagecrease_right",
+          "layer": 3,
+          "offset": [0,-2],
+          "size": ["50% - 40px","100% - 14px"]
+        }
+      }
+    ]
+  },
+  //KIT背景
+  "background_kit_menu": {
+    "type": "image",
+    "texture": "textures/ui/book_back"
+  },
+  //本左側内容
+  "book_left_page": {
+    "type":"stack_panel",
+    "offset": [15,20],
+    "size": ["40%", "100%c"],
+    "anchor_from":"top_left",
+    "anchor_to":"top_left",
+    "controls":[
+      {
+        "image": {
+          "type":"image",
+          "texture": "textures/server_form/kit_menu",
+          "size": [138,100]
+        }
+      },
+      {
+        "body": {
+          "type": "panel",
+          "size": ["100%", "100%c"],
+          "controls": [
+            {
+              "main_label": {
+                "type": "label",
+                "offset": [2,2],
+                "size": ["100%", "default"],
+                "anchor_from": "top_left",
+                "anchor_to": "top_left",
+                "text": "#form_text"
+              }
+            }
+          ]
+        }
       }
     ]
   }
