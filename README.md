@@ -4,10 +4,10 @@
 # リリース済み機能(masterブランチ)
 * 地図投票
 * containerMenu
+* 職業メニュー
 
 # 開発予定,開発中 (developブランチ以下)
 * パイメニュー
-* 職業メニュー
 
 # containerMenu
 ### IDの求め方  
@@ -24,7 +24,10 @@
 
 
 ### Script API
-* itemIDAux.js
+
+#### ContainerMenuフォルダをアドオン内に入れる
+
+* Register.js
 
 IDとキーワードを登録する
 ```js
@@ -40,7 +43,7 @@ export const itemIdAuxs = {
 あとはコード書くだけ、
 ```js
 import { world } from "@minecraft/server";
-import { ContainerMenu } from "./ContainerMenu/ContainerMenu";
+import { ContainerMenu } from "./ContainerMenu/index";
 
 world.events.beforeItemUse.subscribe(ev => {
     ShowMainMenu(ev.source);
@@ -50,7 +53,7 @@ async function ShowMainMenu(viewer) {
     const MainMenu = new ContainerMenu(`§lMainMenu`, 27)
         .setContentAll({ itemKey: "barrier"})
         .setContents({
-            12: { itemKey: "iron_sword", foil: true , lore: ["Hello", viewer.name] },
+            12: { itemKey: "iron_sword", amount: 64 , foil: true , lore: ["Hello", viewer.name] },
             14: { itemKey: "book" }
         })
         .setItem(0, { itemKey: "clock", foil: true, lore: ["close"] });
