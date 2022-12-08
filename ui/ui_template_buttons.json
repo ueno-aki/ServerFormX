@@ -56,6 +56,83 @@
           "$locked_state": true,
           "layer": 1
         }
+      },
+      {
+        "items": {
+          "type": "panel",
+          "layer": 23,
+          "$index": 0,
+          "size": [18, "100%x"],
+          "controls": [
+            {
+              "item_renderer": {
+                "type": "custom",
+                "renderer": "inventory_item_renderer",
+                "size": [16, 16],
+                "bindings": [
+                  {
+                    "binding_name": "#form_button_text",
+                    "binding_name_override": "#text",
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "(('%.' + $digit + 's') * #text)",
+                    "target_property_name": "#header"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "((('%.' + $digit + 's') * #text) - $prefix)",
+                    "target_property_name": "#length"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "(((('%.' + (($index + 1) * #length) + 's') * (#text - #header)) - (('%.' + ($index * #length) + 's') * (#text - #header))) - $ignored_string)",
+                    "target_property_name": "#item_id_aux"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "item_stack_size_text": {
+          "type": "label",
+          "$index": 2,
+          "offset": [0, 1],
+          "anchor_to": "bottom_right",
+          "anchor_from": "bottom_right",
+          "font_type":"unicode",
+          "layer": 27,
+          "shadow": true,
+          "color": "$selected_item_stack_count_color",
+          "text": "#item_count",
+          "bindings": [
+            {
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text",
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(('%.' + $digit + 's') * #text)",
+              "target_property_name": "#header"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((('%.' + $digit + 's') * #text) - $prefix)",
+              "target_property_name": "#length"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(((('%.' + (($index + 1) * #length) + 's') * (#text - #header)) - (('%.' + ($index * #length) + 's') * (#text - #header))) - $ignored_string)",
+              "target_property_name": "#item_count"
+            }
+          ]
+        }
       }
     ]
   },
@@ -77,10 +154,7 @@
       {
         "button_content": {
           "type": "panel",
-          "$button_content_size|default": [
-            "100% - 6px",
-            "100% - 6px"
-          ],
+          "$button_content_size|default": ["100% - 6px", "100% - 6px"],
           "size": "$button_content_size",
           "controls": [
             {
@@ -102,12 +176,34 @@
       {
         "hover_text@common.hover_text": {
           "layer": 29,
+          "$index": 1,
           "bindings": [
             {
-              "binding_name": "$hover_text",
-              "binding_name_override": "#hover_text",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text",
               "binding_type": "collection",
               "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_name": "#collection_index",
+              "binding_name_override": "#index",
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(('%.' + $digit + 's') * #text)",
+              "target_property_name": "#header"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((('%.' + $digit + 's') * #text) - $prefix)",
+              "target_property_name": "#length"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(((('%.' + (($index + 1) * #length) + 's') * (#text - #header)) - (('%.' + ($index * #length) + 's') * (#text - #header))) - $ignored_string)",
+              "target_property_name": "#hover_text"
             }
           ]
         }
@@ -131,10 +227,7 @@
       {
         "button_content": {
           "type": "panel",
-          "$button_content_size|default": [
-            "100% - 6px",
-            "100% - 6px"
-          ],
+          "$button_content_size|default": ["100% - 6px", "100% - 6px"],
           "size": "$button_content_size",
           "controls": [
             {
