@@ -56,6 +56,9 @@
       },
       {
         "container_form_store@server_form.container_form_store": {}
+      },
+      {
+        "kit_menu_store@server_form.kit_menu_store": {}
       }
     ]
   },
@@ -74,7 +77,7 @@
     "bindings": [
       {
         "binding_type": "view",
-        "source_property_name": "((not (#title_text = 'container')) and ((#title_text - '§m§a§p§r') = #title_text))",
+        "source_property_name": "(((not (#title_text = 'container')) and ((#title_text - '§m§a§p§r') = #title_text)) and ((#title_text - '§k§i§t§r') = #title_text))",
         "target_property_name": "#visible"
       }
     ]
@@ -584,6 +587,316 @@
             {
               "binding_type": "collection_details",
               "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  //KITフォーム---------------------------
+  "kit_menu_store": {
+    "type": "panel",
+    "offset": [0,-15],
+    "size": [
+      "320px",
+      "200px"
+    ],
+    "controls": [
+      {
+        "kit_menu@server_form.kit_menu": {
+          "layer": 7
+        }
+      },
+      {
+        "title": {
+          "type":"label",
+          "layer": 23,
+          "text": "#title_text",
+          "anchor_from":"top_middle",
+          "anchor_to":"top_middle",
+          "offset": ["25% - 5px",10]
+        }
+      },
+      {
+        "book_left_page@server_form.book_left_page": {
+          "layer": 23
+        }
+      },
+      {
+        "book_wrapping_panel@server_form.book_wrapping_panel":{
+          "layer": 2
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "view",
+        "source_property_name": "(not ((#title_text - '§k§i§t§r') = #title_text))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "kit_menu@common_dialogs.main_panel_no_buttons": {
+    "$custom_background": "common.empty_panel",
+    "$title_panel": "common_dialogs.standard_title_label",
+    "size": [
+      "100% - 20px",
+      "100% - 5px"
+    ],
+    "$title_text_binding_type": "none",
+    "$child_control": "server_form.kit_menu_panel"
+  },
+
+  "kit_menu_panel" : {
+    "type": "stack_panel",
+    "size": ["133px", "100%"],
+    "orientation": "vertical",
+    "layer": 1,
+    "anchor_from": "top_right",
+    "anchor_to": "top_right",
+    "controls": [
+      
+      {
+        "scrolling_panel@common.scrolling_panel": {
+          "anchor_to": "top_left",
+          "anchor_from": "top_left",
+          "$show_background": false,
+          "size": [ "100%", "100% - 10px" ],
+          "$scrolling_content": "server_form.kit_menu_scrolling_content",
+          "$scroll_size": [ 5, "100% - 4px" ],
+          "$scrolling_pane_size": [ "100% - 4px", "100% - 2px" ],
+          "$scrolling_pane_offset": [ 2, 0 ],
+          "$scroll_bar_right_padding_size": [ 0, 0 ]
+        }
+      }
+    ]
+  },
+
+  "kit_menu_scrolling_content": {
+    "type": "stack_panel",
+    "size": [ "100% - 4px", "100%c" ],
+    "orientation": "vertical",
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+
+    "controls": [
+      {
+        "wrapping_panel": {
+          "type": "panel",
+          "size": [ "100%", "100%c" ],
+          "controls": [
+            {
+              "kit_menu_dynamic_buttons_panel@server_form.kit_menu_dynamic_buttons_panel": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "kit_menu_dynamic_buttons_panel": {
+    "type": "stack_panel",
+    "size": ["100%", "100%c"],
+    "orientation": "vertical",
+    "anchor_from": "top_right",
+    "anchor_to": "top_right",
+
+    "factory":{
+      "name": "buttons",
+      "control_name": "server_form.kit_menu_dynamic_button"
+    },
+
+    "collection_name": "form_buttons",
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+
+  "kit_menu_dynamic_button": {
+    "type": "stack_panel",
+    "size": ["100%", 32],
+    "orientation": "horizontal",
+    "controls":[
+      {
+        "panel_name": {
+          "type": "panel",
+          "size": [34, "100%c"],
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_control_name": "image",
+              "resolve_sibling_scope": true,
+              "source_property_name": "(not (#texture = ''))",
+              "target_property_name": "#visible"
+            }
+          ],
+
+          "controls": [
+            {
+              "image": {
+                "type": "image",
+                "layer": 2,
+                "size": [32, 32],
+                "offset": [-2, 0],
+                "bindings":[
+                  {
+                    "binding_name": "#form_button_texture",
+                    "binding_name_override": "#texture",
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons"
+                  },
+                  {
+                    "binding_name": "#form_button_texture_file_system",
+                    "binding_name_override": "#texture_file_system",
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "(not ((#texture = '') or (#texture = 'loading')))",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "progress@progress.progress_loading_bars": {
+                "size": [30, 4],
+                "offset": [-2, 16],
+                "bindings":[
+                  {
+                    "binding_type": "view",
+                    "source_control_name": "image",
+                    "resolve_sibling_scope": true,
+                    "source_property_name": "(#texture = 'loading')",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "form_button@common_buttons.kit_light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "size": [ "fill", 32 ],
+          "$button_text": "#form_button_text",
+          "$button_text_binding_type": "collection",
+          "$button_text_grid_collection_name": "form_buttons",
+          "$button_text_max_size": [ "100%", 20 ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  //本の画像組み立て
+  "book_wrapping_panel": {
+    "type":"panel",
+    "controls":[
+      {
+        "background_kit_menu@server_form.background_kit_menu": {
+          "layer": 0
+        }
+      },
+      {
+        "book_spine": {
+          "type":"image",
+          "texture": "textures/ui/book_spine",
+          "layer": 1,
+          "size": ["8px","100% - 2px"]
+        }
+      },
+      {
+        "page_edge_left_image": {
+          "type":"image",
+          "anchor_from":"left_middle",
+          "anchor_to":"left_middle",
+          "texture": "textures/ui/book_pageedge_left",
+          "layer": 2,
+          "offset": [7,-1],
+          "size": ["50% - 7px","100% - 16px"]
+        }
+      },
+      {
+        "page_crease_left_image": {
+          "type":"image",
+          "anchor_from":"center",
+          "anchor_to":"right_middle",
+          "texture": "textures/ui/book_pagecrease_left",
+          "layer": 3,
+          "offset": [0,-2],
+          "size": ["50% - 40px","100% - 14px"]
+        }
+      },
+      {
+        "page_edge_right_image": {
+          "type":"image",
+          "anchor_from":"right_middle",
+          "anchor_to":"right_middle",
+          "texture": "textures/ui/book_pageedge_right",
+          "layer": 2,
+          "offset": [-7,-1],
+          "size": ["50% - 7px","100% - 16px"]
+        }
+      },
+      {
+        "page_crease_right_image": {
+          "type":"image",
+          "anchor_from":"center",
+          "anchor_to":"left_middle",
+          "texture": "textures/ui/book_pagecrease_right",
+          "layer": 3,
+          "offset": [0,-2],
+          "size": ["50% - 40px","100% - 14px"]
+        }
+      }
+    ]
+  },
+  //KIT背景
+  "background_kit_menu": {
+    "type": "image",
+    "texture": "textures/ui/book_back"
+  },
+  //本左側内容
+  "book_left_page": {
+    "type":"stack_panel",
+    "offset": [15,20],
+    "size": ["40%", "100%c"],
+    "anchor_from":"top_left",
+    "anchor_to":"top_left",
+    "controls":[
+      {
+        "image": {
+          "type":"image",
+          "texture": "textures/server_form/kit_menu",
+          "size": [138,100]
+        }
+      },
+      {
+        "body": {
+          "type": "panel",
+          "size": ["100%", "100%c"],
+          "controls": [
+            {
+              "main_label": {
+                "type": "label",
+                "offset": [2,2],
+                "size": ["100%", "default"],
+                "anchor_from": "top_left",
+                "anchor_to": "top_left",
+                "text": "#form_text"
+              }
             }
           ]
         }
