@@ -800,6 +800,7 @@
       }
     ]
   },
+  //本の画像組み立て
   "book_wrapping_panel": {
     "type":"panel",
     "controls":[
@@ -867,6 +868,7 @@
     "type": "image",
     "texture": "textures/ui/book_back"
   },
+  //本左側内容
   "book_left_page": {
     "type":"stack_panel",
     "offset": [15,20],
@@ -877,7 +879,7 @@
       {
         "image": {
           "type":"image",
-          "texture": "textures/ui/kit_menu",
+          "texture": "textures/server_form/kit_menu",
           "size": [138,100]
         }
       },
