@@ -22,8 +22,8 @@ Creates a new ContainerMenu builder.
 * size:*number*
 
 #### Returns [ContainerMenuResponce](#containermenuresponce-class)
-{.warning}
-:   This function can throw errors
+> **Warning**
+> This function can throw errors
 
 ### setItem
 ```js
