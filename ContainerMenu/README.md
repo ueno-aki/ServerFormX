@@ -3,16 +3,16 @@
 ## Methods
 
 * [constructor](#constructor)
-* setItem
-* setContents
-* setContentAll
-* clearItem
-* clearContents
+* [setItem](#setitem)
+* [setContents](#setcontents)
+* [setContentAll](#setcontentall)
+* [clearItem](#clearitem)
+* [clearContents](#clearcontents)
 * show
 
 ### constructor
 ```js
-new ContainerMenu(menuName:string,size:number)
+new ContainerMenu(menuName:string,size:number):ContainerMenu
 ```
 
 Creates a new ContainerMenu builder.
@@ -29,10 +29,10 @@ Creates a new ContainerMenu builder.
 ##
 ### setItem
 ```js
-setItem(slot:number | number[], item:ItemInfo)
+setItem(slot:number | number[], item:ItemInfo):ContainerMenu
 ```
 
-Adds a item to the slot
+Adds the item to the slots
 
 #### Parameters
 * menuName:*number* | *number*[]
@@ -54,12 +54,12 @@ container.show(player).then((result) => {
     console.warn(result.selectedItem?.id);
 })
 ```  
-
-
-
+##
+##
+##
 ### setContents
 ```js
-setContents(itemElements:Record<number,ItemInfo>)
+setContents(itemElements:Record<number,ItemInfo>):ContainerMenu
 ```
 
 Methods that can be written more readable than [*setItem*](#setitem)
@@ -84,12 +84,12 @@ container.show(player).then((result) => {
     console.warn(result.selectedItem?.id);
 })
 ```  
-
-
-
+##
+##
+##
 ### setContentAll
 ```js
-setContentAll(item:ItemInfo)
+setContentAll(item:ItemInfo):ContainerMenu
 ```
 
 Adds the item to all slots
@@ -100,6 +100,35 @@ Adds the item to all slots
 #### Returns [ContainerMenu](#containermenu-class)
 > **Warning**  
 > This function can throw errors  
+##
+##
+##
+### clearItem
+```js
+clearItem(slot:number | number[]):ContainerMenu
+```
+
+Removes the item to the sslots
+
+#### Parameters
+* size:*number* | *number*[]
+
+#### Returns [ContainerMenu](#containermenu-class)
+> **Warning**  
+> This function can throw errors  
+##
+##
+##
+### clearContents
+```js
+clearContents():void
+```
+
+Removes the item to all slots
+
+> **Warning**  
+> This function can throw errors  
+
 
 
 
