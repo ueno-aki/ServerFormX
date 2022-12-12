@@ -9,6 +9,24 @@
 * パイメニュー
 
 # ContainerMenu
+
+### Script API
+
+#### [ContainerMenuフォルダ](https://github.com/ueno-aki/ServerFormX/tree/main/ContainerMenu)をアドオン内に入れる
+
+[*Register.js*](https://github.com/ueno-aki/ServerFormX/blob/main/ContainerMenu/Register.js)で、[ID](#idの求め方)とキーワードを登録する
+```js
+export const itemIdAuxs = {
+    "emerald/*区別できるキーワード*/" : 512,/*←ID今回はエメラルドのID*/
+    "u-pa-": 369,
+    //...
+}
+```
+
+あとはコード書くだけ。  
+[***ここ***](https://github.com/ueno-aki/ServerFormX/tree/main/ContainerMenu)を参照してね。
+
+
 ### IDの求め方  
 ***以下のサイトから調べられる.ただしアドオンでアイテムを追加したりするとずれる場合あり***
 * https://learn.microsoft.com/en-us/minecraft/creator/reference/content/addonsreference/examples/addonitems (マイクロソフト様)
@@ -21,26 +39,6 @@
 4. IDAux(以降aux)から計算してIDを求める
 > ID = (aux - (データ値) - (エンチャントしてる場合32768)) / 65536
 
-
-### Script API
-
-#### [ContainerMenuフォルダ](https://github.com/ueno-aki/ServerFormX/tree/main/ContainerMenu)をアドオン内に入れる
-
-* Register.js
-
-IDとキーワードを登録する
-```js
-export const itemIdAuxs = {
-    "emerald/*区別できるキーワード*/" : 512,/*←ID今回はエメラルドのID*/
-    "u-pa-": 369,
-    //...
-}
-```
-
-* main.js
-
-あとはコード書くだけ。
-[ここ](https://github.com/ueno-aki/ServerFormX/tree/main/ContainerMenu)参照してね。
 
 # Note
 * マップのテクスチャは正方形じゃないとずれる可能性あり
