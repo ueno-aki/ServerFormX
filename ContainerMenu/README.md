@@ -1,4 +1,38 @@
 # ContainerMenu クラス
+ScriptAPIで書くチェストメニュー。
+
+```js
+import { world } from "@minecraft/server";
+import { ContainerMenu } from "./ContainerMenu/index";
+
+world.events.beforeItemUse.subscribe(ev => {
+    ShowMainMenu(ev.source);
+});
+
+async function ShowMainMenu(viewer) {
+    const MainMenu = new ContainerMenu(`§lMainMenu`, 27)
+        .setContents({
+            0: { id: "clock", foil: true, lore: ["close"] },
+            12: { id: "iron_sword", lore: ["Hello", viewer.name] },
+            14: { id: "book", amount: 64, lore: ["Hello", viewer.name] },
+        });
+    const { selectedSlot, selectedItem, canceled } = await MainMenu.show(viewer);
+    if (canceled) return;
+    switch (selectedSlot) {
+        case 12:
+            console.warn(selectedItem.id);//->"iron_sword"
+            // ....
+            break;
+        case 14:
+            // ....
+            break;
+        case 0:
+            break;
+        default:
+            ShowMainMenu(viewer);
+    }
+}
+```
 
 ## メソッド
 
@@ -145,40 +179,7 @@ ContainerMenuフォームを生成し指定したプレイヤーに見せて、�
 > **Warning**  
 > このメソッドはエラーを吐く場合があります。  
 
-#### 例
 
-```js
-import { world } from "@minecraft/server";
-import { ContainerMenu } from "./ContainerMenu/index";
-
-world.events.beforeItemUse.subscribe(ev => {
-    ShowMainMenu(ev.source);
-});
-
-async function ShowMainMenu(viewer) {
-    const MainMenu = new ContainerMenu(`§lMainMenu`, 27)
-        .setContents({
-            0: { id: "clock", foil: true, lore: ["close"] },
-            12: { id: "iron_sword", lore: ["Hello", viewer.name] },
-            14: { id: "book", amount: 64, lore: ["Hello", viewer.name] },
-        });
-    const { selectedSlot, selectedItem, canceled } = await MainMenu.show(viewer);
-    if (canceled) return;
-    switch (selectedSlot) {
-        case 12:
-            console.warn(selectedItem.id);//->"iron_sword"
-            // ....
-            break;
-        case 14:
-            // ....
-            break;
-        case 0:
-            break;
-        default:
-            ShowMainMenu(viewer);
-    }
-}
-```
 
 # ItemInfo インターフェース
 ContainerMenu上のアイテムの定義です。
@@ -231,3 +232,42 @@ Type: *number*
 アイテムのスタック数表示(なくても良い)。
 
 # ContainerMenuResponce インターフェース
+ContainerMenuフォームから返ってくるオブジェクトです。
+
+## プロパティ
+
+### selectedSlot
+```ts
+selectedSlot?: number;
+```
+
+Type: *number*
+
+選択されたスロットの番号。キャンセルされた場合*undefined*。
+
+### selectedItem
+```ts
+selectedItem?: ItemInfo;
+```
+
+Type: [*ItemInfo*](#iteminfo-インターフェース)
+
+選択されたスロットのアイテム。アイテムがないもしくはキャンセルされた場合*undefined*
+
+### canceled
+```ts
+canceled boolean;
+```
+
+Type: *boolean*
+
+キャンセルボタンを押されたかどうか。
+
+### cancelationReason
+```ts
+cancelationReason?: @minecraft/server-ui.FormCancelationReason;
+```
+
+Type: [*@minecraft/server-ui.FormCancelationReason*](https://learn.microsoft.com/ja-jp/minecraft/creator/scriptapi/minecraft/server-ui/formcancelationreason)
+
+キャンセルされた原因、詳しくは[ここ](https://learn.microsoft.com/ja-jp/minecraft/creator/scriptapi/minecraft/server-ui/formcancelationreason)。
