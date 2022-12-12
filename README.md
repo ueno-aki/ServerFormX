@@ -3,7 +3,7 @@
 # リリース済み機能(masterブランチ)
 * 地図投票
 * containerMenu
-* 職業メニュー
+* KITメニュー(*動的に画像を変更したいため改良予定*)
 
 # 開発予定,開発中 (developブランチ以下)
 * パイメニュー
@@ -39,6 +39,12 @@ export const itemIdAuxs = {
 4. IDAux(以降aux)から計算してIDを求める
 > ID = (aux - (データ値) - (エンチャントしてる場合32768)) / 65536
 
+# 地図投票
+* [*ActionFormData*](https://learn.microsoft.com/ja-jp/minecraft/creator/scriptapi/minecraft/server-ui/actionformdata)にて、タイトルに```§m§a§p§r```が含まれていたら表示する。
+* ```<ActionFormData>.button(text: string, iconPath?: string)```にて*iconPath*で指定されたテクスチャが表示される画像
+
+# KITメニュー
+* [*ActionFormData*](https://learn.microsoft.com/ja-jp/minecraft/creator/scriptapi/minecraft/server-ui/actionformdata)にて、タイトルに```§k§i§t§r```が含まれていたら表示する。
 
 # Note
 * マップのテクスチャは正方形じゃないとずれる可能性あり
