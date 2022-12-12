@@ -107,6 +107,14 @@ Adds the item to all slots
 
 
 
+
+
+
+
+
+
+
+
 # ItemInfo Interface
 
 # ContainerMenuResponce Class
