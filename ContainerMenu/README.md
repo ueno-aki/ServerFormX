@@ -24,9 +24,9 @@ Creates a new ContainerMenu builder.
 #### Returns [ContainerMenu](#containermenu-class)
 > **Warning**  
 > This function can throw errors  
-##
-##
-##
+###
+###
+###
 ### setItem
 ```js
 setItem(slot:number | number[], item:ItemInfo):ContainerMenu
@@ -54,9 +54,9 @@ container.show(player).then((result) => {
     console.warn(result.selectedItem?.id);
 })
 ```  
-##
-##
-##
+###
+###
+###
 ### setContents
 ```js
 setContents(itemElements:Record<number,ItemInfo>):ContainerMenu
@@ -84,9 +84,9 @@ container.show(player).then((result) => {
     console.warn(result.selectedItem?.id);
 })
 ```  
-##
-##
-##
+###
+###
+###
 ### setContentAll
 ```js
 setContentAll(item:ItemInfo):ContainerMenu
@@ -100,9 +100,9 @@ Adds the item to all slots
 #### Returns [ContainerMenu](#containermenu-class)
 > **Warning**  
 > This function can throw errors  
-##
-##
-##
+###
+###
+###
 ### clearItem
 ```js
 clearItem(slot:number | number[]):ContainerMenu
@@ -116,9 +116,9 @@ Removes the item to the sslots
 #### Returns [ContainerMenu](#containermenu-class)
 > **Warning**  
 > This function can throw errors  
-##
-##
-##
+###
+###
+###
 ### clearContents
 ```js
 clearContents():void
