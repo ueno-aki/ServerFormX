@@ -22,7 +22,7 @@ ContainerMenuクラスのインスタンスを生成します。
 * size: *number*
 
 #### Returns [ContainerMenu](#containermenu-class)
-> **警告**  
+> **Warning**  
 > このメソッドはエラーを吐く場合があります。
 
 
@@ -39,7 +39,7 @@ setItem(slot:number | number[], item:ItemInfo):ContainerMenu
 * item: [*ItemInfo*](#iteminfo-interface)
 
 #### Returns [ContainerMenu](#containermenu-class)
-> **警告**  
+> **Warning**  
 > このメソッドはエラーを吐く場合があります。
 
 #### 例
@@ -68,7 +68,7 @@ setContents(itemElements:Record<number,ItemInfo>):ContainerMenu
 * itemElements: Record<*number*,[*ItemInfo*](#iteminfo-interface)>
 
 #### Returns [ContainerMenu](#containermenu-class)
-> **警告**  
+> **Warning**  
 > このメソッドはエラーを吐く場合があります。
 
 #### 例
@@ -98,7 +98,7 @@ setContentAll(item:ItemInfo):ContainerMenu
 * item: [*ItemInfo*](#iteminfo-interface)
 
 #### Returns [ContainerMenu](#containermenu-class)
-> **警告**  
+> **Warning**  
 > このメソッドはエラーを吐く場合があります。
 
 
@@ -114,7 +114,7 @@ clearItem(slot:number | number[]):ContainerMenu
 * slot: *number* | *number*[]
 
 #### Returns [ContainerMenu](#containermenu-class)
-> **警告**  
+> **Warning**  
 > このメソッドはエラーを吐く場合があります。
 
 
@@ -126,7 +126,7 @@ clearContents():void
 
 すべてのスロットのアイテムを消去します。
 
-> **警告**  
+> **Warning**  
 > このメソッドはエラーを吐く場合があります。
 
 
@@ -142,7 +142,7 @@ ContainerMenuフォームを生成し指定したプレイヤーに見せて、�
 * target: [*@minecraft/server.Player*](https://learn.microsoft.com/ja-jp/minecraft/creator/scriptapi/minecraft/server/player)
 
 #### Returns [ContainerMenuResponce](#containermenuresponce-class)
-> **警告**  
+> **Warning**  
 > このメソッドはエラーを吐く場合があります。  
 
 #### 例
