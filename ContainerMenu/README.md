@@ -8,7 +8,7 @@
 * [setContentAll](#setcontentall)
 * [clearItem](#clearitem)
 * [clearContents](#clearcontents)
-* show
+* [show](#show)
 
 ### constructor
 ```js
@@ -35,7 +35,7 @@ setItem(slot:number | number[], item:ItemInfo):ContainerMenu
 Adds the item to the slots
 
 #### Parameters
-* slot:*number* | *number*[]
+* slot: *number* | *number*[]
 * item: [*ItemInfo*](#iteminfo-interface)
 
 #### Returns [ContainerMenu](#containermenu-class)
@@ -141,9 +141,11 @@ Creates and shows this ContainerMenu form. Returns asynchromously when the playe
 #### Parameters
 * target: [*@minecraft/server.Player*](https://learn.microsoft.com/ja-jp/minecraft/creator/scriptapi/minecraft/server/player)
 
-#### Returns [ContainerMenu](#containermenu-class)
+#### Returns [ContainerMenuResponce](#containermenuresponce-class)
+
 > **Warning**  
 > This function can throw errors  
+
 
 
 # ItemInfo Interface
