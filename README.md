@@ -50,12 +50,11 @@ world.events.beforeItemUse.subscribe(ev => {
 
 async function ShowMainMenu(viewer) {
     const MainMenu = new ContainerMenu(`§lMainMenu`, 27)
-        .setContentAll({ id: "barrier"})
         .setContents({
-            12: { id: "iron_sword", amount: 64 , foil: true , lore: ["Hello", viewer.name] },
-            14: { id: "book" }
-        })
-        .setItem(0, { id: "clock", foil: true, lore: ["close"] });
+            0: { id: "clock", foil: true, lore: ["close"] },
+            12: { id: "iron_sword", lore: ["Hello", viewer.name] },
+            14: { id: "book", amount: 64, lore: ["Hello", viewer.name] },
+        });
     const { selectedSlot, selectedItem, canceled } = await MainMenu.show(viewer);
     if (canceled) return;
     switch (selectedSlot) {
