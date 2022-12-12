@@ -18,15 +18,15 @@ new ContainerMenu(menuName:string,size:number):ContainerMenu
 Creates a new ContainerMenu builder.
 
 #### Parameters
-* menuName:*string*
-* size:*number*
+* menuName: *string*
+* size: *number*
 
 #### Returns [ContainerMenu](#containermenu-class)
 > **Warning**  
 > This function can throw errors  
-###
-###
-###
+
+
+
 ### setItem
 ```js
 setItem(slot:number | number[], item:ItemInfo):ContainerMenu
@@ -35,8 +35,8 @@ setItem(slot:number | number[], item:ItemInfo):ContainerMenu
 Adds the item to the slots
 
 #### Parameters
-* menuName:*number* | *number*[]
-* size:[*ItemInfo*](#iteminfo-interface)
+* slot:*number* | *number*[]
+* item: [*ItemInfo*](#iteminfo-interface)
 
 #### Returns [ContainerMenu](#containermenu-class)
 > **Warning**  
@@ -54,9 +54,9 @@ container.show(player).then((result) => {
     console.warn(result.selectedItem?.id);
 })
 ```  
-###
-###
-###
+
+
+
 ### setContents
 ```js
 setContents(itemElements:Record<number,ItemInfo>):ContainerMenu
@@ -65,7 +65,7 @@ setContents(itemElements:Record<number,ItemInfo>):ContainerMenu
 Methods that can be written more readable than [*setItem*](#setitem)
 
 #### Parameters
-* itemElements:Record<*number*,[*ItemInfo*](#iteminfo-interface)>
+* itemElements: Record<*number*,[*ItemInfo*](#iteminfo-interface)>
 
 #### Returns [ContainerMenu](#containermenu-class)
 > **Warning**  
@@ -84,9 +84,9 @@ container.show(player).then((result) => {
     console.warn(result.selectedItem?.id);
 })
 ```  
-###
-###
-###
+
+
+
 ### setContentAll
 ```js
 setContentAll(item:ItemInfo):ContainerMenu
@@ -95,30 +95,30 @@ setContentAll(item:ItemInfo):ContainerMenu
 Adds the item to all slots
 
 #### Parameters
-* size:[*ItemInfo*](#iteminfo-interface)
+* item: [*ItemInfo*](#iteminfo-interface)
 
 #### Returns [ContainerMenu](#containermenu-class)
 > **Warning**  
 > This function can throw errors  
-###
-###
-###
+
+
+
 ### clearItem
 ```js
 clearItem(slot:number | number[]):ContainerMenu
 ```
 
-Removes the item to the sslots
+Removes the item to the slots
 
 #### Parameters
-* size:*number* | *number*[]
+* slot: *number* | *number*[]
 
 #### Returns [ContainerMenu](#containermenu-class)
 > **Warning**  
 > This function can throw errors  
-###
-###
-###
+
+
+
 ### clearContents
 ```js
 clearContents():void
@@ -130,6 +130,20 @@ Removes the item to all slots
 > This function can throw errors  
 
 
+
+### show
+```js
+show(target: @minecraft/server.Player):Promise<ContainerMenuResponce>
+```
+
+Creates and shows this ContainerMenu form. Returns asynchromously when the player confirms or cancels the dialog.
+
+#### Parameters
+* target: [*@minecraft/server.Player*](https://learn.microsoft.com/ja-jp/minecraft/creator/scriptapi/minecraft/server/player)
+
+#### Returns [ContainerMenu](#containermenu-class)
+> **Warning**  
+> This function can throw errors  
 
 
 # ItemInfo Interface
