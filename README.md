@@ -24,7 +24,7 @@
 
 ### Script API
 
-#### ContainerMenuフォルダをアドオン内に入れる
+#### [ContainerMenuフォルダ](https://github.com/ueno-aki/ServerFormX/tree/main/ContainerMenu)をアドオン内に入れる
 
 * Register.js
 
@@ -73,6 +73,9 @@ async function ShowMainMenu(viewer) {
 }
 
 ```
+
+リファレンスは[ここ](https://github.com/ueno-aki/ServerFormX/tree/main/ContainerMenu)
+
 # Note
 * マップのテクスチャは正方形じゃないとずれる可能性あり
 * 職業選択フォームの画像の大きさは413(横),300(縦).多少のズレは問題無し
