@@ -23,7 +23,7 @@ Creates a new ContainerMenu builder.
 
 #### Returns [ContainerMenu](#containermenu-class)
 > **Warning**  
-> This function can throw errors
+> This function can throw errors  
 
 
 
@@ -53,7 +53,8 @@ container
 container.show(player).then((result) => {
     console.warn(result.selectedItem?.id);
 })
-```
+```  
+
 
 
 ### setContents
@@ -82,7 +83,8 @@ container.setContents({
 container.show(player).then((result) => {
     console.warn(result.selectedItem?.id);
 })
-```
+```  
+
 
 
 ### setContentAll
@@ -97,7 +99,7 @@ Adds the item to all slots
 
 #### Returns [ContainerMenu](#containermenu-class)
 > **Warning**  
-> This function can throw errors
+> This function can throw errors  
 
 
 
