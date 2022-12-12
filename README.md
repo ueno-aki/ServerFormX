@@ -12,9 +12,9 @@
 
 ### Script API
 
-#### [ContainerMenuフォルダ](https://github.com/ueno-aki/ServerFormX/tree/main/ContainerMenu)をアドオン内に入れる
+1. [ContainerMenuフォルダ](https://github.com/ueno-aki/ServerFormX/tree/main/ContainerMenu)をアドオン内に入れる
 
-[*Register.js*](https://github.com/ueno-aki/ServerFormX/blob/main/ContainerMenu/Register.js)で、[ID](#idの求め方)とキーワードを登録する
+2. [*Register.js*](https://github.com/ueno-aki/ServerFormX/blob/main/ContainerMenu/Register.js)で、[ID](#idの求め方)とキーワードを登録する
 ```js
 export const itemIdAuxs = {
     "emerald/*区別できるキーワード*/" : 512,/*←ID今回はエメラルドのID*/
@@ -23,7 +23,7 @@ export const itemIdAuxs = {
 }
 ```
 
-あとはコード書くだけ。  
+3. あとはコード書くだけ。  
 [***ここ***](https://github.com/ueno-aki/ServerFormX/tree/main/ContainerMenu)を参照してね。
 
 
