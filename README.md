@@ -39,42 +39,8 @@ export const itemIdAuxs = {
 
 * main.js
 
-あとはコード書くだけ、
-```js
-import { world } from "@minecraft/server";
-import { ContainerMenu } from "./ContainerMenu/index";
-
-world.events.beforeItemUse.subscribe(ev => {
-    ShowMainMenu(ev.source);
-});
-
-async function ShowMainMenu(viewer) {
-    const MainMenu = new ContainerMenu(`§lMainMenu`, 27)
-        .setContents({
-            0: { id: "clock", foil: true, lore: ["close"] },
-            12: { id: "iron_sword", lore: ["Hello", viewer.name] },
-            14: { id: "book", amount: 64, lore: ["Hello", viewer.name] },
-        });
-    const { selectedSlot, selectedItem, canceled } = await MainMenu.show(viewer);
-    if (canceled) return;
-    switch (selectedSlot) {
-        case 12:
-            console.warn(selectedItem.id);//->"iron_sword"
-            // ....
-            break;
-        case 14:
-            // ....
-            break;
-        case 0:
-            break;
-        default:
-            ShowMainMenu(viewer);
-    }
-}
-
-```
-
-リファレンスは[ここ](https://github.com/ueno-aki/ServerFormX/tree/main/ContainerMenu)
+あとはコード書くだけ。
+[ここ](https://github.com/ueno-aki/ServerFormX/tree/main/ContainerMenu)参照してね。
 
 # Note
 * マップのテクスチャは正方形じゃないとずれる可能性あり
