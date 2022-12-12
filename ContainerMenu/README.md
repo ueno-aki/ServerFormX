@@ -180,7 +180,48 @@ async function ShowMainMenu(viewer) {
 }
 ```
 
-# ContainerMenuResponce Class
+# ItemInfo インターフェース
+ContainerMenu上のアイテムの定義です。
+
+## プロパティ
+
+### id
+```ts
+id: keyof typeof ItemIDAuxs;
+```
+
+Type: keyof typeof [*ItemIDAuxs*](https://github.com/ueno-aki/ServerFormX/blob/main/ContainerMenu/Register.js)
 
 
-# ItemInfo Interface
+### lore
+```ts
+id: string[];
+```
+
+Type: *string*[]
+
+
+### foil
+```ts
+id: boolean;
+```
+
+Type: *boolean*
+
+
+### data
+```ts
+id: number;
+```
+
+Type: *number*
+
+### amount
+```ts
+id: number;
+```
+
+Type: *number*
+
+
+# ContainerMenuResponce インターフェース
