@@ -22,7 +22,7 @@ Creates a new ContainerMenu builder.
 * size:*number*
 
 #### Returns [ContainerMenuResponce](#containermenuresponce-class)
-:::note alert
+:::note warn
 Warning
 This function can throw errors.
 :::
