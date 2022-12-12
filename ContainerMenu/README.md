@@ -27,6 +27,7 @@ Creates a new ContainerMenu builder.
 
 
 
+
 ### setItem
 ```js
 setItem(slot:number | number[], item:ItemInfo)
@@ -54,6 +55,7 @@ container.show(player).then((result) => {
     console.warn(result.selectedItem?.id);
 })
 ```  
+
 
 
 
@@ -87,6 +89,7 @@ container.show(player).then((result) => {
 
 
 
+
 ### setContentAll
 ```js
 setContentAll(item:ItemInfo)
@@ -100,6 +103,7 @@ Adds the item to all slots
 #### Returns [ContainerMenu](#containermenu-class)
 > **Warning**  
 > This function can throw errors  
+
 
 
 
