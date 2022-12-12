@@ -56,10 +56,11 @@ async function ShowMainMenu(viewer) {
             14: { id: "book" }
         })
         .setItem(0, { id: "clock", foil: true, lore: ["close"] });
-    const { selection, canceled } = await MainMenu.show(viewer);
+    const { selectedSlot, selectedItem, canceled } = await MainMenu.show(viewer);
     if (canceled) return;
-    switch (selection) {
+    switch (selectedSlot) {
         case 12:
+            console.warn(selectedItem.id);//->"iron_sword"
             // ....
             break;
         case 14:
