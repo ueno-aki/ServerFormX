@@ -8,7 +8,7 @@
 # 開発予定,開発中 (developブランチ以下)
 * パイメニュー
 
-# containerMenu
+# ContainerMenu
 ### IDの求め方  
 ***以下のサイトから調べられる.ただしアドオンでアイテムを追加したりするとずれる場合あり***
 * https://learn.microsoft.com/en-us/minecraft/creator/reference/content/addonsreference/examples/addonitems (マイクロソフト様)

@@ -1,6 +1,6 @@
-# ContainerMenu Class
+# ContainerMenu クラス
 
-## Methods
+## メソッド
 
 * [constructor](#constructor)
 * [setItem](#setitem)
@@ -15,15 +15,15 @@
 new ContainerMenu(menuName:string,size:number):ContainerMenu
 ```
 
-Creates a new ContainerMenu builder.
+ContainerMenuクラスのインスタンスを生成します。
 
-#### Parameters
+#### パラメータ
 * menuName: *string*
 * size: *number*
 
 #### Returns [ContainerMenu](#containermenu-class)
-> **Warning**  
-> This function can throw errors  
+> **警告**  
+> このメソッドはエラーを吐く場合があります。
 
 
 
@@ -32,17 +32,17 @@ Creates a new ContainerMenu builder.
 setItem(slot:number | number[], item:ItemInfo):ContainerMenu
 ```
 
-Adds the item to the slots
+指定したスロットにアイテムを追加します。
 
-#### Parameters
+#### パラメータ
 * slot: *number* | *number*[]
 * item: [*ItemInfo*](#iteminfo-interface)
 
 #### Returns [ContainerMenu](#containermenu-class)
-> **Warning**  
-> This function can throw errors
+> **警告**  
+> このメソッドはエラーを吐く場合があります。
 
-#### Examples
+#### 例
 
 *setItem.js*
 ```js
@@ -62,16 +62,16 @@ container.show(player).then((result) => {
 setContents(itemElements:Record<number,ItemInfo>):ContainerMenu
 ```
 
-Methods that can be written more readable than [*setItem*](#setitem)
+[*setItem*](#setitem)よりも効率的にかけるのでおすすめ。
 
-#### Parameters
+#### パラメータ
 * itemElements: Record<*number*,[*ItemInfo*](#iteminfo-interface)>
 
 #### Returns [ContainerMenu](#containermenu-class)
-> **Warning**  
-> This function can throw errors
+> **警告**  
+> このメソッドはエラーを吐く場合があります。
 
-#### Examples
+#### 例
 
 *setContents.js*
 ```js
@@ -92,14 +92,14 @@ container.show(player).then((result) => {
 setContentAll(item:ItemInfo):ContainerMenu
 ```
 
-Adds the item to all slots
+すべてのスロットに指定したアイテムを追加します。
 
-#### Parameters
+#### パラメータ
 * item: [*ItemInfo*](#iteminfo-interface)
 
 #### Returns [ContainerMenu](#containermenu-class)
-> **Warning**  
-> This function can throw errors  
+> **警告**  
+> このメソッドはエラーを吐く場合があります。
 
 
 
@@ -108,14 +108,14 @@ Adds the item to all slots
 clearItem(slot:number | number[]):ContainerMenu
 ```
 
-Removes the item to the slots
+指定したスロットのアイテムを消去します。
 
-#### Parameters
+#### パラメータ
 * slot: *number* | *number*[]
 
 #### Returns [ContainerMenu](#containermenu-class)
-> **Warning**  
-> This function can throw errors  
+> **警告**  
+> このメソッドはエラーを吐く場合があります。
 
 
 
@@ -124,10 +124,10 @@ Removes the item to the slots
 clearContents():void
 ```
 
-Removes the item to all slots
+すべてのスロットのアイテムを消去します。
 
-> **Warning**  
-> This function can throw errors  
+> **警告**  
+> このメソッドはエラーを吐く場合があります。
 
 
 
@@ -136,18 +136,49 @@ Removes the item to all slots
 show(target: @minecraft/server.Player):Promise<ContainerMenuResponce>
 ```
 
-Creates and shows this ContainerMenu form. Returns asynchromously when the player confirms or cancels the dialog.
+ContainerMenuフォームを生成し指定したプレイヤーに見せて、そのプレイヤーが選択したとき非同期的に値を返します。
 
-#### Parameters
+#### パラメータ
 * target: [*@minecraft/server.Player*](https://learn.microsoft.com/ja-jp/minecraft/creator/scriptapi/minecraft/server/player)
 
 #### Returns [ContainerMenuResponce](#containermenuresponce-class)
+> **警告**  
+> このメソッドはエラーを吐く場合があります。  
 
-> **Warning**  
-> This function can throw errors  
+#### 例
 
+```js
+import { world } from "@minecraft/server";
+import { ContainerMenu } from "./ContainerMenu/index";
 
+world.events.beforeItemUse.subscribe(ev => {
+    ShowMainMenu(ev.source);
+});
 
+async function ShowMainMenu(viewer) {
+    const MainMenu = new ContainerMenu(`§lMainMenu`, 27)
+        .setContents({
+            0: { id: "clock", foil: true, lore: ["close"] },
+            12: { id: "iron_sword", lore: ["Hello", viewer.name] },
+            14: { id: "book", amount: 64, lore: ["Hello", viewer.name] },
+        });
+    const { selectedSlot, selectedItem, canceled } = await MainMenu.show(viewer);
+    if (canceled) return;
+    switch (selectedSlot) {
+        case 12:
+            console.warn(selectedItem.id);//->"iron_sword"
+            // ....
+            break;
+        case 14:
+            // ....
+            break;
+        case 0:
+            break;
+        default:
+            ShowMainMenu(viewer);
+    }
+}
+```
 
 # ContainerMenuResponce Class
 
