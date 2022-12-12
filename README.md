@@ -1,7 +1,7 @@
 # ServerFormX
 
 # リリース済み機能(masterブランチ)
-* 地図投票
+* マップ投票
 * containerMenu
 * KITメニュー(*動的に画像を変更したいため改良予定*)
 
@@ -39,7 +39,7 @@ export const itemIdAuxs = {
 4. IDAux(以降aux)から計算してIDを求める
 > ID = (aux - (データ値) - (エンチャントしてる場合32768)) / 65536
 
-# 地図投票
+# マップ投票
 * [*ActionFormData*](https://learn.microsoft.com/ja-jp/minecraft/creator/scriptapi/minecraft/server-ui/actionformdata)にて、タイトルに```§m§a§p§r```が含まれていたら表示する。
 * ```<ActionFormData>.button(text: string, iconPath?: string)```にて*iconPath*で指定されたテクスチャが表示される画像
 
