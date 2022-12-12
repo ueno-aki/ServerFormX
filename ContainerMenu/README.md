@@ -21,7 +21,7 @@ ContainerMenuクラスのインスタンスを生成します。
 * menuName: *string*
 * size: *number*
 
-#### Returns [ContainerMenu](#containermenu-class)
+#### Returns [ContainerMenu](#containermenu-クラス)
 > **Warning**  
 > このメソッドはエラーを吐く場合があります。
 
@@ -36,9 +36,9 @@ setItem(slot:number | number[], item:ItemInfo):ContainerMenu
 
 #### パラメータ
 * slot: *number* | *number*[]
-* item: [*ItemInfo*](#iteminfo-interface)
+* item: [*ItemInfo*](#iteminfo-インターフェース)
 
-#### Returns [ContainerMenu](#containermenu-class)
+#### Returns [ContainerMenu](#containermenu-クラス)
 > **Warning**  
 > このメソッドはエラーを吐く場合があります。
 
@@ -65,9 +65,9 @@ setContents(itemElements:Record<number,ItemInfo>):ContainerMenu
 [*setItem*](#setitem)よりも効率的にかけるのでおすすめ。
 
 #### パラメータ
-* itemElements: Record<*number*,[*ItemInfo*](#iteminfo-interface)>
+* itemElements: Record<*number*,[*ItemInfo*](#iteminfo-インターフェース)>
 
-#### Returns [ContainerMenu](#containermenu-class)
+#### Returns [ContainerMenu](#containermenu-クラス)
 > **Warning**  
 > このメソッドはエラーを吐く場合があります。
 
@@ -95,9 +95,9 @@ setContentAll(item:ItemInfo):ContainerMenu
 すべてのスロットに指定したアイテムを追加します。
 
 #### パラメータ
-* item: [*ItemInfo*](#iteminfo-interface)
+* item: [*ItemInfo*](#iteminfo-インターフェース)
 
-#### Returns [ContainerMenu](#containermenu-class)
+#### Returns [ContainerMenu](#containermenu-クラス)
 > **Warning**  
 > このメソッドはエラーを吐く場合があります。
 
@@ -113,7 +113,7 @@ clearItem(slot:number | number[]):ContainerMenu
 #### パラメータ
 * slot: *number* | *number*[]
 
-#### Returns [ContainerMenu](#containermenu-class)
+#### Returns [ContainerMenu](#containermenu-クラス)
 > **Warning**  
 > このメソッドはエラーを吐く場合があります。
 
@@ -141,7 +141,7 @@ ContainerMenuフォームを生成し指定したプレイヤーに見せて、�
 #### パラメータ
 * target: [*@minecraft/server.Player*](https://learn.microsoft.com/ja-jp/minecraft/creator/scriptapi/minecraft/server/player)
 
-#### Returns [ContainerMenuResponce](#containermenuresponce-class)
+#### Returns [ContainerMenuResponce](#containermenuresponce-インターフェース)
 > **Warning**  
 > このメソッドはエラーを吐く場合があります。  
 
@@ -192,6 +192,7 @@ id: keyof typeof ItemIDAuxs;
 
 Type: keyof typeof [*ItemIDAuxs*](https://github.com/ueno-aki/ServerFormX/blob/main/ContainerMenu/Register.js)
 
+アイテムのID。[ここ](https://github.com/ueno-aki/ServerFormX/blob/main/ContainerMenu/Register.js)で事前に定義する、定義の仕方は[こっち](https://github.com/ueno-aki/ServerFormX#id%E3%81%AE%E6%B1%82%E3%82%81%E6%96%B9)。
 
 ### lore
 ```ts
@@ -200,28 +201,33 @@ id: string[];
 
 Type: *string*[]
 
+アイテムの説明文(なくても良い)。
 
 ### foil
 ```ts
-id: boolean;
+foil?: boolean;
 ```
 
 Type: *boolean*
 
+アイテムがエンチャントみたく光るかどうか(なくても良い)。
 
 ### data
 ```ts
-id: number;
+data?: number;
 ```
 
 Type: *number*
+
+アイテムのデータ値(なくても良い)。ベッドや羊毛の色分けで使う。
 
 ### amount
 ```ts
-id: number;
+amount?: number;
 ```
 
 Type: *number*
 
+アイテムのスタック数表示(なくても良い)。
 
 # ContainerMenuResponce インターフェース
