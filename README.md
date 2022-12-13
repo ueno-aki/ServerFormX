@@ -24,7 +24,7 @@ export const itemIdAuxs = {
 ```
 
 3. あとはコード書くだけ。  
-[***ここ***](https://github.com/ueno-aki/ServerFormX/tree/main/ContainerMenu)を参照してね。
+[***wiki***](https://github.com/ueno-aki/ServerFormX/wiki/ContainerMenu)を参照してね。
 
 
 ### IDの求め方  
