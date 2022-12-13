@@ -1,11 +1,11 @@
 # ServerFormX
 
-# リリース済み機能(masterブランチ)
+# リリース済み機能
 * マップ投票
 * containerMenu
 * KITメニュー(*動的に画像を変更したいため改良予定*)
 
-# 開発予定,開発中 (developブランチ以下)
+# 開発予定,開発中
 * パイメニュー
 
 # ContainerMenu
