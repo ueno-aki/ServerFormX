@@ -18,9 +18,11 @@
 * [*ActionFormData*](https://learn.microsoft.com/ja-jp/minecraft/creator/scriptapi/minecraft/server-ui/actionformdata)にて、タイトルに```§k§i§t§r```が含まれていたら表示する。
 
 # Note
-* マップのテクスチャは正方形じゃないとずれる可能性あり
-* 職業選択フォームの画像の大きさは413(横),300(縦).多少のズレは問題無し
+* [Map投票] テクスチャは正方形じゃないとずれる可能性あり.
+* [KITメニュー] 画像の大きさは413(横),300(縦).多少のズレは問題無し.
+* [ContainerMenu] <ItemInfo>.loreにおいて```lore:["3"]```のように数値のみにしないこと(表示されなくなる).どうしても数値のみにしたいなら***§r***等を置いて回避すると良い.
 
 # Author
 * うえの
+
 -discord ***ueno#8639***
