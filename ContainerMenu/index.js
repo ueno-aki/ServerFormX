@@ -37,7 +37,7 @@ export class ContainerMenu {
 
     /**@param {string} menuName @param {number} size*/
     constructor(menuName,size) {
-        if (size < 0) throw new Error("[ContainerMenu::constructor]size must be a positive number");
+        if (size < 0) throw new Error("[ContainerMenu::constructor]size must not be a negative number");
 
         this.menuName = menuName;
         this.size = size;
@@ -46,10 +46,9 @@ export class ContainerMenu {
     /**
      * @param {number | number[]}slot container's slot
      * @param {ItemInfo} item itemInfo
-     * @example <ContainerMenu>
-     * .setItem(3,{id:"wool",amount:10,foil:true,lore:["they are enchanted blue wools."],data:11})
-     * .setItem(-5,{id:"apple"})
-     * .setItem([2,4,6],{id:"apple"});
+     * @example <ContainerMenu>.setItem(-1,{id:"apple"});
+     * @example <ContainerMenu>.setItem([2,4,6],{id:"apple"});
+     * @example <ContainerMenu>.setItem(3,{id:"wool",amount:10,foil:true,lore:["they are 10 enchanted blue wools."],data:11});
      */
     setItem(slot, item) {
         if (typeof slot === "number") {
@@ -73,7 +72,7 @@ export class ContainerMenu {
      * @param {Record<number,ItemInfo>} itemElements container's slots
      * @example <ContainerMenu>.setContent({
      *  0: { id: "apple" },
-     *  1: { ... },
+     *  1: { id: "banana" },
      * });
      */
     setContents(itemElements) {
