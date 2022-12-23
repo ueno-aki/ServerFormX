@@ -78,7 +78,7 @@
                   },
                   {
                     "binding_type": "view",
-                    "source_property_name": "((('%.' + $header_byte + 's') * #text) - 'Õ')",
+                    "source_property_name": "((('%.' + $header_size + 's') * #text) - 'Õ')",
                     "target_property_name": "#content_length"
                   },
                   {
@@ -123,7 +123,7 @@
             },
             {
               "binding_type": "view",
-              "source_property_name": "((('%.' + $header_byte + 's') * #text) - 'Õ')",
+              "source_property_name": "((('%.' + $header_size + 's') * #text) - 'Õ')",
               "target_property_name": "#content_length"
             },
             {
@@ -196,7 +196,7 @@
             },
             {
               "binding_type": "view",
-              "source_property_name": "((('%.' + $header_byte + 's') * #text) - 'Õ')",
+              "source_property_name": "((('%.' + $header_size + 's') * #text) - 'Õ')",
               "target_property_name": "#content_length"
             },
             {
