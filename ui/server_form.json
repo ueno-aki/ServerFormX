@@ -555,9 +555,9 @@
       "100%x"
     ],
     "orientation": "horizontal",
-    "$ignored_string": "@",
-    "$prefix": "^",
-    "$digit": 5,
+    "$ignored_2":"Õ",
+    "$ignored_3":"甕",
+    "$header_size":7,
     "controls": [
       {
         "form_button@common_buttons.container_light_text_button": {

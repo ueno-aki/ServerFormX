@@ -61,7 +61,7 @@
         "items": {
           "type": "panel",
           "layer": 23,
-          "$index": 0,
+          "$index": 1,
           "size": [18, "100%x"],
           "controls": [
             {
@@ -78,17 +78,22 @@
                   },
                   {
                     "binding_type": "view",
-                    "source_property_name": "(('%.' + $digit + 's') * #text)",
-                    "target_property_name": "#header"
+                    "source_property_name": "((('%.' + $header_byte + 's') * #text) - 'Õ')",
+                    "target_property_name": "#content_length"
                   },
                   {
                     "binding_type": "view",
-                    "source_property_name": "((('%.' + $digit + 's') * #text) - $prefix)",
-                    "target_property_name": "#length"
+                    "source_property_name": "(('%.' + #content_length + 's') * #text)",
+                    "target_property_name": "#content"
                   },
                   {
                     "binding_type": "view",
-                    "source_property_name": "(((('%.' + (($index + 1) * #length) + 's') * (#text - #header)) - (('%.' + ($index * #length) + 's') * (#text - #header))) - $ignored_string)",
+                    "source_property_name": "(#text - #content)",
+                    "target_property_name": "#element_length"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "((((('%.' + (($index + 1) * #element_length) + 's') * #content) - (('%.' + ($index * #element_length) + 's') * #content)) - $ignored_2) - $ignored_3)",
                     "target_property_name": "#item_id_aux"
                   }
                 ]
@@ -100,15 +105,15 @@
       {
         "item_stack_size_text": {
           "type": "label",
-          "$index": 2,
+          "text": "#item_count",
+          "font_type":"unicode",
+          "shadow": true,
+          "color": "$selected_item_stack_count_color",
           "offset": [0, 1],
           "anchor_to": "bottom_right",
           "anchor_from": "bottom_right",
-          "font_type":"unicode",
           "layer": 27,
-          "shadow": true,
-          "color": "$selected_item_stack_count_color",
-          "text": "#item_count",
+          "$index": 2,
           "bindings": [
             {
               "binding_name": "#form_button_text",
@@ -118,17 +123,22 @@
             },
             {
               "binding_type": "view",
-              "source_property_name": "(('%.' + $digit + 's') * #text)",
-              "target_property_name": "#header"
+              "source_property_name": "((('%.' + $header_byte + 's') * #text) - 'Õ')",
+              "target_property_name": "#content_length"
             },
             {
               "binding_type": "view",
-              "source_property_name": "((('%.' + $digit + 's') * #text) - $prefix)",
-              "target_property_name": "#length"
+              "source_property_name": "(('%.' + #content_length + 's') * #text)",
+              "target_property_name": "#content"
             },
             {
               "binding_type": "view",
-              "source_property_name": "(((('%.' + (($index + 1) * #length) + 's') * (#text - #header)) - (('%.' + ($index * #length) + 's') * (#text - #header))) - $ignored_string)",
+              "source_property_name": "(#text - #content)",
+              "target_property_name": "#element_length"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "((((('%.' + (($index + 1) * #element_length) + 's') * #content) - (('%.' + ($index * #element_length) + 's') * #content)) - $ignored_2) - $ignored_3)",
               "target_property_name": "#item_count"
             }
           ]
@@ -176,7 +186,7 @@
       {
         "hover_text@common.hover_text": {
           "layer": 29,
-          "$index": 1,
+          "$index": 3,
           "bindings": [
             {
               "binding_name": "#form_button_text",
@@ -185,24 +195,23 @@
               "binding_collection_name": "form_buttons"
             },
             {
-              "binding_name": "#collection_index",
-              "binding_name_override": "#index",
-              "binding_type": "collection",
-              "binding_collection_name": "form_buttons"
+              "binding_type": "view",
+              "source_property_name": "((('%.' + $header_byte + 's') * #text) - 'Õ')",
+              "target_property_name": "#content_length"
             },
             {
               "binding_type": "view",
-              "source_property_name": "(('%.' + $digit + 's') * #text)",
-              "target_property_name": "#header"
+              "source_property_name": "(('%.' + #content_length + 's') * #text)",
+              "target_property_name": "#content"
             },
             {
               "binding_type": "view",
-              "source_property_name": "((('%.' + $digit + 's') * #text) - $prefix)",
-              "target_property_name": "#length"
+              "source_property_name": "(#text - #content)",
+              "target_property_name": "#element_length"
             },
             {
               "binding_type": "view",
-              "source_property_name": "(((('%.' + (($index + 1) * #length) + 's') * (#text - #header)) - (('%.' + ($index * #length) + 's') * (#text - #header))) - $ignored_string)",
+              "source_property_name": "((((('%.' + (($index + 1) * #element_length) + 's') * #content) - (('%.' + ($index * #element_length) + 's') * #content)) - $ignored_2) - $ignored_3)",
               "target_property_name": "#hover_text"
             }
           ]
